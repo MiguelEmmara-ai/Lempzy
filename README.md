@@ -1,10 +1,10 @@
-<p align="center"><a href="[https://laravel.com](https://github.com/MiguelEmmara-ai/LempStackUbuntu20.04)" target="_blank"><img src="https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/logo/lemp.jpeg" width="400" alt="Lemp Logo"></a><br>image source: Techkylabs</p>
+<p align="center"><a href="[https://miguelemmara.me/](https://github.com/MiguelEmmara-ai/Lempzy)" target="_blank"><img src="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/logo/lemp.jpeg" width="400" alt="Lemp Logo"></a><br>image source: Techkylabs</p>
 
 # Lempzy
 Lempzy is a Simple All In One script to install LEMP Server Stack (Linux eNginx Mysql PHP) with just a single command line.
 
 # Menu
-![Alt text](https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/screenshots/Lempzy-main-menu.PNG "Main Menu")
+![Lempzy](https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/screenshots/Lempzy-main-menu.PNG "Main Menu")
 
 ## Fully Optimize
 The installation will also optimize the configuration within The LEMP Stack.
