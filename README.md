@@ -3,6 +3,9 @@
 # Lempzy
 Lempzy is a Simple All In One script to install LEMP Server Stack (Linux eNginx Mysql PHP) with just a single command line.
 
+# Menu
+![Alt text](https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/screenshots/Lempzy-main-menu.PNG "Main Menu")
+
 ## Fully Optimize
 The installation will also optimize the configuration within The LEMP Stack.
 
@@ -27,9 +30,10 @@ Here all the list that the script will install
 What things you need to make sure before proceed.
 * **OS: DEBIAN (10, 11), UBUNTU (18.04, 20.04, 22.04, 22.10)**
 * **YOU SHOULD BE LOGIN AS ROOT**
+* **FRESH CLEAN SERVER**
 
 ## How to use
-To Install this script, all you need to do is to run a single command line and it will install everything.
+To Install Lempzy, all you need to do is to run a single command line and it will install everything.
 
 ```
 apt update; apt-get install dos2unix; wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/lemp-ubuntu-20-04.sh -O ~/lemp-ubuntu-20-04.sh && dos2unix ~/lemp-ubuntu-20-04.sh && bash ~/lemp-ubuntu-20-04.sh
@@ -37,7 +41,7 @@ apt update; apt-get install dos2unix; wget https://raw.githubusercontent.com/Mig
 ```
 
 ## Getting Started
-Congratulations, you now have installed LEMP!
+Congratulations, you now have installed Lempzy!
 
 Once everything is set up, run this command below in /root directory to open the Menu Options
 ```
