@@ -47,7 +47,6 @@ Once everything is set up, run this command below in /root directory to open the
 ```
 ./lempzy.sh
 ```
-IF YOU ARE NOT IN /root DIRECTORY
 
 ## Authors
 * **Muhamad Miguel Emmara** - *Lempzy*
