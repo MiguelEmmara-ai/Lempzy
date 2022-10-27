@@ -65,7 +65,7 @@ update_os() {
      echo ""
      sleep 3
      apt update
-     apt upgrade
+     apt upgrade -y
      echo ""
      sleep 1
 }
@@ -452,7 +452,7 @@ install_zips
 install_ffmpeg
 configuring_php_fpm_nginx
 php_pool_setting
-restart_nginx_php
+restart_services
 change_login_greetings
 
 # Menu Script
