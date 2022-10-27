@@ -364,9 +364,6 @@ install_mcrpyt() {
           sleep 1
 
      elif [[ "${PHP_VERSION}" == "7.4" ]]; then
-          echo "${grn}Installing Mcrypt ...${end}"
-          echo ""
-          sleep 3
           apt-get install php-dev libmcrypt-dev php-pear -y
           pecl channel-update pecl.php.net
           yes | pecl install channel://pecl.php.net/mcrypt-1.0.4
@@ -377,9 +374,6 @@ install_mcrpyt() {
           sleep 1
 
      elif [[ "${PHP_VERSION}" == "8.1" ]]; then
-          echo "${grn}Installing Mcrypt ...${end}"
-          echo ""
-          sleep 3
           apt-get install php-dev libmcrypt-dev php-pear -y
           pecl channel-update pecl.php.net
           yes | pecl install channel://pecl.php.net/mcrypt-1.0.5
