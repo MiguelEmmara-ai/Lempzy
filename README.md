@@ -45,7 +45,7 @@ Congratulations, you now have installed Lempzy!
 
 Once everything is set up, run this command below in /root directory to open the Menu Options
 ```
-./menu.sh
+./lempzy.sh
 ```
 IF YOU ARE NOT IN /root DIRECTORY
 

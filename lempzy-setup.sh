@@ -342,7 +342,7 @@ echo "|_|  |_|_|\__, |\__,_|\___|_| |______|_| |_| |_|_| |_| |_|\__,_|_|  \__,_|
 echo "           __/ |"
 echo "          |___/"
 echo ""
-./menu.sh
+./lempzy.sh
 EOF
 
     echo ""
@@ -374,9 +374,9 @@ change_login_greetings
 
 # Menu Script
 cd
-wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/menu.sh -O menu.sh
-dos2unix menu.sh
-chmod +x menu.sh
+wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/lempzy.sh -O lempzy.sh
+dos2unix lempzy.sh
+chmod +x lempzy.sh
 
 # Success Prompt
 clear

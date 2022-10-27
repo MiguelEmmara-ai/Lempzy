@@ -135,7 +135,7 @@ main_menu() {
       12)
         clear
         echo "Bye!"
-        echo "You can open the Main Menu by typing ${grn}./menu.sh${end}"
+        echo "You can open the Main Menu by typing ${grn}./lempzy.sh${end}"
         exit
         ;;
 
@@ -250,7 +250,7 @@ sub_menu1() {
       9)
         clear
         echo "Bye!"
-        echo "You can open the Main Menu by typing ${grn}./menu.sh${end}"
+        echo "You can open the Main Menu by typing ${grn}./lempzy.sh${end}"
         exit
         ;;
 
@@ -330,7 +330,7 @@ sub_menu2() {
       5)
         clear
         echo "Bye!"
-        echo "You can open the Main Menu by typing ${grn}./menu.sh${end}"
+        echo "You can open the Main Menu by typing ${grn}./lempzy.sh${end}"
         exit
         ;;
 
