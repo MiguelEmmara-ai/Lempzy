@@ -421,46 +421,6 @@ configuring_php_fpm_nginx() {
      sleep 1
 }
 
-# TODO TEST SINGLE SCRIPT
-# PHP POOL SETTING
-php_pool_setting() {
-     # Get PHP Installed Version
-     PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
-
-     if [[ "${PHP_VERSION}" == "7.2" ]]; then
-          systemctl restart php7.2-fpm.service
-
-     elif [[ "${PHP_VERSION}" == "7.3" ]]; then
-          echo "${grn}Setting Up PHP Pool ...${end}"
-          echo ""
-          sleep 3
-          php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/php7dotdeb"
-          wget -q $php7_dotdeb -O /etc/php/7.3/fpm/pool.d/$domain.conf
-          sed -i "s/domain.com/$domain/g" /etc/php/7.3/fpm/pool.d/$domain.conf
-          echo "" >>/etc/php/7.3/fpm/pool.d/$domain.conf
-          dos2unix /etc/php/7.3/fpm/pool.d/$domain.conf
-          service php7.3-fpm reload
-          echo ""
-          sleep 1
-
-     elif [[ "${PHP_VERSION}" == "7.4" ]]; then
-          echo "${grn}Setting Up PHP Pool ...${end}"
-          echo ""
-          sleep 3
-          php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/php7dotdeb"
-          wget -q $php7_dotdeb -O /etc/php/7.4/fpm/pool.d/$domain.conf
-          sed -i "s/domain.com/$domain/g" /etc/php/7.4/fpm/pool.d/$domain.conf
-          echo "" >>/etc/php/7.4/fpm/pool.d/$domain.conf
-          dos2unix /etc/php/7.4/fpm/pool.d/$domain.conf
-          service php7.4-fpm reload
-          echo ""
-          sleep 1
-     else
-          echo -e "${red}Sorry, This script is designed for DEBIAN (10, 11), UBUNTU (18.04, 20.04, 22.04, 22.10)${end}"
-          exit 1
-     fi
-}
-
 # Change Login Greeting
 change_login_greetings() {
     echo "${grn}Change Login Greeting ...${end}"
