@@ -32,11 +32,11 @@ What things you need to make sure before proceed.
 * **YOU SHOULD BE LOGIN AS ROOT**
 * **FRESH CLEAN SERVER**
 
-## How to use
+## How to Install Lempzy
 To Install Lempzy, all you need to do is to run a single command line and it will install everything.
 
 ```
-apt update; apt-get install dos2unix; wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/lemp-ubuntu-20-04.sh -O ~/lemp-ubuntu-20-04.sh && dos2unix ~/lemp-ubuntu-20-04.sh && bash ~/lemp-ubuntu-20-04.sh
+apt update; apt-get install dos2unix; wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/lempzy-setup.sh -O ~/lempzy-setup.sh.sh && dos2unix ~/lempzy-setup.sh.sh && bash ~/lempzy-setup.sh.sh
 
 ```
 
