@@ -117,6 +117,7 @@ cd $sitesAvailable
 wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/vhost-fastcgi -O $domain
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
 
+# TODO FIX ALL DOTDEB PROBLEM MAKE IT DYNAMIC
 # PHP POOL SETTING
 php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/php7dotdeb"
 wget -q $php7_dotdeb -O /etc/php/7.4/fpm/pool.d/$domain.conf
