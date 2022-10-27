@@ -130,7 +130,7 @@ install_php() {
           apt install php7.3-common php7.3-zip php7.3-curl php7.3-xml php7.3-xmlrpc php7.3-json php7.3-mysql php7.3-pdo php7.3-gd php7.3-imagick php7.3-ldap php7.3-imap php7.3-mbstring php7.3-intl php7.3-cli php7.3-recode php7.3-tidy php7.3-bcmath php7.3-opcache -y
           apt-get purge php8.* -y
           apt-get autoclean
-          apt-get autoremove
+          apt-get autoremove -y
           echo ""
           sleep 1
 
@@ -428,13 +428,23 @@ php_pool_setting() {
           systemctl restart php7.2-fpm.service
 
      elif [[ "${PHP_VERSION}" == "7.3" ]]; then
-          systemctl restart php7.3-fpm.service
+          echo "${grn}Setting Up PHP Pool ...${end}"
+          echo ""
+          sleep 3
+          php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/php7dotdeb"
+          wget -q $php7_dotdeb -O /etc/php/7.3/fpm/pool.d/$domain.conf
+          sed -i "s/domain.com/$domain/g" /etc/php/7.3/fpm/pool.d/$domain.conf
+          echo "" >>/etc/php/7.3/fpm/pool.d/$domain.conf
+          dos2unix /etc/php/7.3/fpm/pool.d/$domain.conf
+          service php7.3-fpm reload
+          echo ""
+          sleep 1
 
      elif [[ "${PHP_VERSION}" == "7.4" ]]; then
           echo "${grn}Setting Up PHP Pool ...${end}"
           echo ""
           sleep 3
-          php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/php7dotdeb"
+          php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/php7dotdeb"
           wget -q $php7_dotdeb -O /etc/php/7.4/fpm/pool.d/$domain.conf
           sed -i "s/domain.com/$domain/g" /etc/php/7.4/fpm/pool.d/$domain.conf
           echo "" >>/etc/php/7.4/fpm/pool.d/$domain.conf
