@@ -144,7 +144,13 @@ install_php() {
           sleep 1
 
      elif [[ "${OS_VERSION}" == "22.04" ]]; then
-          echo "Ubuntu 22.04 PHP"
+          echo "${grn}Installing PHP ...${end}"
+          echo ""
+          sleep 3
+          apt install php8.1-fpm php-mysql -y
+          apt-get install php8.1 php8.1-common php8.1-gd php8.1-mysql php8.1-imap php8.1-cli php8.1-cgi php-pear mcrypt imagemagick libruby php8.1-curl php8.1-intl php8.1-pspell php8.1-sqlite3 php8.1-tidy php8.1-xmlrpc php8.1-xsl memcached php-memcache php-imagick php8.1-zip php8.1-mbstring memcached php8.1-soap php8.1-fpm php8.1-opcache php-apcu -y
+          echo ""
+          sleep 1
 
      elif [[ "${OS_VERSION}" == "22.10" ]]; then
           echo "${grn}Installing PHP ...${end}"
@@ -336,6 +342,10 @@ install_ioncube() {
 
 # Install Mcrypt
 install_mcrpyt() {
+     echo "${grn}Installing Mcrypt ...${end}"
+     echo ""
+     sleep 3
+
      # PHP Modules folder
      MODULES=$(php -i | grep ^extension_dir | awk '{print $NF}')
 
