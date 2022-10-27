@@ -151,7 +151,7 @@ mkdir -p /etc/nginx/mycache/$domain
 # Add nginx Vhost for domain
 configName=$domain
 cd $sitesAvailable
-wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/vhost-fastcgi -O $domain
+wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/vhost-fastcgi -O $domain
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
 
 # PHP POOL SETTING

@@ -72,31 +72,31 @@ main_menu() {
         ;;
 
       3)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/main-menu/showdomain.sh -O ~/showdomain.sh && dos2unix ~/showdomain.sh && bash ~/showdomain.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/main-menu/showdomain.sh -O ~/showdomain.sh && dos2unix ~/showdomain.sh && bash ~/showdomain.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
 
       4)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/database-menu/show-databases.sh -O ~/show-databases.sh && dos2unix ~/show-databases.sh && bash ~/show-databases.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/database-menu/show-databases.sh -O ~/show-databases.sh && dos2unix ~/show-databases.sh && bash ~/show-databases.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
 
       5)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/addons/rainloop.sh -O ~/rainloop.sh && dos2unix ~/rainloop.sh && bash ~/rainloop.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/addons/rainloop.sh -O ~/rainloop.sh && dos2unix ~/rainloop.sh && bash ~/rainloop.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
 
       6)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/addons/filerun.sh -O ~/filerun.sh && dos2unix ~/filerun.sh && bash ~/filerun.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/addons/filerun.sh -O ~/filerun.sh && dos2unix ~/filerun.sh && bash ~/filerun.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
 
       7)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/main-menu/changeportsshd.sh -O ~/changeportsshd.sh && dos2unix ~/changeportsshd.sh && bash ~/changeportsshd.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/main-menu/changeportsshd.sh -O ~/changeportsshd.sh && dos2unix ~/changeportsshd.sh && bash ~/changeportsshd.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
@@ -119,13 +119,13 @@ main_menu() {
         ;;
 
       10)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/addons/invoiceninja.sh -O ~/invoiceninja.sh && dos2unix ~/invoiceninja.sh && bash ~/invoiceninja.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/addons/invoiceninja.sh -O ~/invoiceninja.sh && dos2unix ~/invoiceninja.sh && bash ~/invoiceninja.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
 
       11)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/main-menu/restartserver.sh -O ~/restartserver.sh && dos2unix ~/restartserver.sh && bash ~/restartserver.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/main-menu/restartserver.sh -O ~/restartserver.sh && dos2unix ~/restartserver.sh && bash ~/restartserver.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
@@ -198,43 +198,43 @@ sub_menu1() {
       case $submenudomain in
 
       1)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/domain-menu/domain1.sh -O ~/domain1.sh && dos2unix ~/domain1.sh && bash ~/domain1.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/domain-menu/domain1.sh -O ~/domain1.sh && dos2unix ~/domain1.sh && bash ~/domain1.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
 
       2)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/domain-menu/domain2.sh -O ~/domain2.sh && dos2unix ~/domain2.sh && bash ~/domain2.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/domain-menu/domain2.sh -O ~/domain2.sh && dos2unix ~/domain2.sh && bash ~/domain2.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
 
       3)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/domain-menu/domain3.sh -O ~/domain3.sh && dos2unix ~/domain3.sh && bash ~/domain3.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/domain-menu/domain3.sh -O ~/domain3.sh && dos2unix ~/domain3.sh && bash ~/domain3.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
 
       4)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/domain-menu/domain4.sh -O ~/domain4.sh && dos2unix ~/domain4.sh && bash ~/domain4.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/domain-menu/domain4.sh -O ~/domain4.sh && dos2unix ~/domain4.sh && bash ~/domain4.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
 
       5)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/main-menu/showdomain.sh -O ~/showdomain.sh && dos2unix ~/showdomain.sh && bash ~/showdomain.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/main-menu/showdomain.sh -O ~/showdomain.sh && dos2unix ~/showdomain.sh && bash ~/showdomain.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
 
       6)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/domain-menu/delete.sh -O ~/delete.sh && dos2unix ~/delete.sh && bash ~/delete.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/domain-menu/delete.sh -O ~/delete.sh && dos2unix ~/delete.sh && bash ~/delete.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
 
       7)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/domain-menu/backupwebdata.sh -O ~/backupwebdata.sh && dos2unix ~/backupwebdata.sh && bash ~/backupwebdata.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/domain-menu/backupwebdata.sh -O ~/backupwebdata.sh && dos2unix ~/backupwebdata.sh && bash ~/backupwebdata.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
@@ -301,19 +301,19 @@ sub_menu2() {
       case $submenudomain2 in
 
       1)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/database-menu/create-database.sh -O ~/create-database.sh && dos2unix ~/create-database.sh && bash ~/create-database.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/database-menu/create-database.sh -O ~/create-database.sh && dos2unix ~/create-database.sh && bash ~/create-database.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu2
         ;;
 
       2)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/database-menu/delete-database.sh -O ~/delete-database.sh && dos2unix ~/delete-database.sh && bash ~/delete-database.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/database-menu/delete-database.sh -O ~/delete-database.sh && dos2unix ~/delete-database.sh && bash ~/delete-database.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu2
         ;;
 
       3)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/database-menu/show-databases.sh -O ~/show-databases.sh && dos2unix ~/show-databases.sh && bash ~/show-databases.sh
+        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/database-menu/show-databases.sh -O ~/show-databases.sh && dos2unix ~/show-databases.sh && bash ~/show-databases.sh
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu2
         ;;

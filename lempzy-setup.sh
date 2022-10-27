@@ -289,7 +289,7 @@ configuring_php_fpm_nginx() {
     sleep 3
     rm -rf /etc/nginx/nginx.conf
     cd /etc/nginx/
-    wget https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/nginx.conf -O nginx.conf
+    wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/nginx.conf -O nginx.conf
     dos2unix /etc/nginx/nginx.conf
     cd
     echo ""
