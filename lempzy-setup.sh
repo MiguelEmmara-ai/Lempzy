@@ -512,7 +512,6 @@ install_ab
 install_zips
 install_ffmpeg
 configuring_php_fpm_nginx
-php_pool_setting
 restart_services
 change_login_greetings
 
