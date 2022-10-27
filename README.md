@@ -51,3 +51,6 @@ IF YOU ARE NOT IN /root DIRECTORY
 
 ## Authors
 * **Muhamad Miguel Emmara** - *Lempzy*
+
+# License
+Copyright 2022. Code released under the MIT license.
