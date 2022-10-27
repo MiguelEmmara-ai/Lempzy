@@ -180,13 +180,14 @@ install_nginx() {
 
 # Configure PHP FPM
 configure_php_fpm() {
+     echo "${grn}Configure PHP FPM ...${end}"
+     echo ""
+     sleep 3
+
      # Get PHP Installed Version
      PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
 
      if [[ "${PHP_VERSION}" == "7.2" ]]; then
-          echo "${grn}Configuring PHP FPM ...${end}"
-          echo ""
-          sleep 3
           sed -i "s/max_execution_time = 30/max_execution_time = 360/g" /etc/php/7.2/fpm/php.ini
           sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/7.2/fpm/php.ini
           sed -i "s/display_errors = .*/display_errors = Off/" /etc/php/7.2/fpm/php.ini
@@ -197,9 +198,6 @@ configure_php_fpm() {
           sleep 1
 
      elif [[ "${PHP_VERSION}" == "7.3" ]]; then
-          echo "${grn}Configuring PHP FPM ...${end}"
-          echo ""
-          sleep 3
           sed -i "s/max_execution_time = 30/max_execution_time = 360/g" /etc/php/7.3/fpm/php.ini
           sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/7.3/fpm/php.ini
           sed -i "s/display_errors = .*/display_errors = Off/" /etc/php/7.3/fpm/php.ini
@@ -210,9 +208,6 @@ configure_php_fpm() {
           sleep 1
 
      elif [[ "${PHP_VERSION}" == "7.4" ]]; then
-          echo "${grn}Configuring PHP FPM ...${end}"
-          echo ""
-          sleep 3
           sed -i "s/max_execution_time = 30/max_execution_time = 360/g" /etc/php/7.4/fpm/php.ini
           sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/7.4/fpm/php.ini
           sed -i "s/display_errors = .*/display_errors = Off/" /etc/php/7.4/fpm/php.ini
@@ -223,9 +218,6 @@ configure_php_fpm() {
           sleep 1
 
      elif [[ "${PHP_VERSION}" == "8.1" ]]; then
-          echo "${grn}Configuring PHP FPM ...${end}"
-          echo ""
-          sleep 3
           sed -i "s/max_execution_time = 30/max_execution_time = 360/g" /etc/php/8.1/fpm/php.ini
           sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/8.1/fpm/php.ini
           sed -i "s/display_errors = .*/display_errors = Off/" /etc/php/8.1/fpm/php.ini
@@ -252,12 +244,17 @@ install_memcached() {
      sleep 1
 
      # Get PHP Installed Version
-     PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION;")
+     PHP_MAJOR_VERSION=$(php -r "echo PHP_MAJOR_VERSION;")
 
-     if [[ "${PHP_VERSION}" != "8" ]]; then
-          apt-get purge php8.* -y
-          apt-get autoclean
-          apt-get autoremove -y
+     # Get PHP Installed Version
+     PHP_MAJOR_VERSION=$(php -r "echo PHP_MAJOR_VERSION;")
+
+     if [[ "${OS_VERSION}" != "22.04" ]] && [[ "${OS_VERSION}" != "22.10" ]]; then
+          if [[ "${PHP_MAJOR_VERSION}" == "8" ]]; then
+               apt-get purge php8.* -y
+               apt-get autoclean
+               apt-get autoremove -y
+          fi
      fi
 
      echo ""
@@ -356,7 +353,7 @@ install_mcrpyt() {
           systemctl restart php7.2-fpm.service
 
      elif [[ "${PHP_VERSION}" == "7.3" ]]; then
-          apt-get install php7.3-dev
+          apt-get install php7.3-dev -y
           apt-get -y install gcc make autoconf libc-dev pkg-config
           apt-get -y install libmcrypt-dev
           yes | pecl install mcrypt-1.0.3
