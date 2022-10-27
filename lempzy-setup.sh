@@ -225,6 +225,9 @@ install_memcached() {
      sleep 1
      apt install php-memcached -y
      sleep 1
+     apt-get purge php8.* -y
+     apt-get autoclean
+     apt-get autoremove -y
      echo ""
      sleep 1
 }
