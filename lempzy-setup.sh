@@ -64,6 +64,10 @@ update_os() {
      echo "${grn}Starting update os ...${end}"
      echo ""
      sleep 3
+     # By default this is set to "interactive" mode which causes the interruption of scripts.
+     if [[ "${OS_VERSION}" == "22.04" ]] || [[ "${OS_VERSION}" == "22.10" ]]; then
+          sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'a'"'"';/' /etc/needrestart/needrestart.conf
+     fi
      apt update
      apt upgrade -y
      echo ""
