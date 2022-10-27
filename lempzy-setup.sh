@@ -147,7 +147,13 @@ install_php() {
           echo "Ubuntu 22.04 PHP"
 
      elif [[ "${OS_VERSION}" == "22.10" ]]; then
-          echo "Ubuntu 22.10 PHP"
+          echo "${grn}Installing PHP ...${end}"
+          echo ""
+          sleep 3
+          apt install php8.1-fpm php-mysql -y
+          apt-get install php8.1 php8.1-common php8.1-gd php8.1-mysql php8.1-imap php8.1-cli php8.1-cgi php-pear mcrypt imagemagick libruby php8.1-curl php8.1-intl php8.1-pspell php8.1-sqlite3 php8.1-tidy php8.1-xmlrpc php8.1-xsl memcached php-memcache php-imagick php8.1-zip php8.1-mbstring memcached php8.1-soap php8.1-fpm php8.1-opcache php-apcu -y
+          echo ""
+          sleep 1
      else
           echo -e "${red}Sorry, This script is designed for DEBIAN (10, 11), UBUNTU (18.04, 20.04, 22.04, 22.10)${end}"
           exit 1
@@ -209,6 +215,19 @@ configure_php_fpm() {
           sed -i "s/post_max_size = .*/post_max_size = 256M/" /etc/php/7.4/fpm/php.ini
           echo ""
           sleep 1
+
+     elif [[ "${PHP_VERSION}" == "8.1" ]]; then
+          echo "${grn}Configuring PHP FPM ...${end}"
+          echo ""
+          sleep 3
+          sed -i "s/max_execution_time = 30/max_execution_time = 360/g" /etc/php/8.1/fpm/php.ini
+          sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/8.1/fpm/php.ini
+          sed -i "s/display_errors = .*/display_errors = Off/" /etc/php/8.1/fpm/php.ini
+          sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/8.1/fpm/php.ini
+          sed -i "s/upload_max_filesize = .*/upload_max_filesize = 256M/" /etc/php/8.1/fpm/php.ini
+          sed -i "s/post_max_size = .*/post_max_size = 256M/" /etc/php/8.1/fpm/php.ini
+          echo ""
+          sleep 1
      else
           echo -e "${red}Sorry, This script is designed for DEBIAN (10, 11), UBUNTU (18.04, 20.04, 22.04, 22.10)${end}"
           exit 1
@@ -225,9 +244,16 @@ install_memcached() {
      sleep 1
      apt install php-memcached -y
      sleep 1
-     apt-get purge php8.* -y
-     apt-get autoclean
-     apt-get autoremove -y
+
+     # Get PHP Installed Version
+     PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION;")
+
+     if [[ "${PHP_VERSION}" != "8" ]]; then
+          apt-get purge php8.* -y
+          apt-get autoclean
+          apt-get autoremove -y
+     fi
+
      echo ""
      sleep 1
 }
@@ -245,6 +271,9 @@ restart_services() {
 
      elif [[ "${PHP_VERSION}" == "7.4" ]]; then
           systemctl restart php7.4-fpm.service
+
+     elif [[ "${PHP_VERSION}" == "8.1" ]]; then
+          systemctl restart php8.1-fpm.service
      else
           echo -e "${red}Sorry, This script is designed for DEBIAN (10, 11), UBUNTU (18.04, 20.04, 22.04, 22.10)${end}"
           exit 1
@@ -287,6 +316,11 @@ install_ioncube() {
           # Copy files to modules folder
           echo "zend_extension=$MODULES/ioncube_loader_lin_${PHP_VERSION}.so" >>/etc/php/7.4/fpm/php.ini
           echo "zend_extension=$MODULES/ioncube_loader_lin_${PHP_VERSION}.so" >>/etc/php/7.4/cli/php.ini
+
+     elif [[ "${PHP_VERSION}" == "8.1" ]]; then
+          # Copy files to modules folder
+          echo "zend_extension=$MODULES/ioncube_loader_lin_${PHP_VERSION}.so" >>/etc/php/8.1/fpm/php.ini
+          echo "zend_extension=$MODULES/ioncube_loader_lin_${PHP_VERSION}.so" >>/etc/php/8.1/cli/php.ini
      else
           echo -e "${red}Sorry, This script is designed for DEBIAN (10, 11), UBUNTU (18.04, 20.04, 22.04, 22.10)${end}"
           exit 1
@@ -331,6 +365,19 @@ install_mcrpyt() {
           yes | pecl install channel://pecl.php.net/mcrypt-1.0.4
           echo "extension=$MODULES/mcrypt.so" >>/etc/php/7.4/fpm/php.ini
           echo "extension=$MODULES/mcrypt.so" >>/etc/php/7.4/cli/php.ini
+          restart_services
+          echo ""
+          sleep 1
+
+     elif [[ "${PHP_VERSION}" == "8.1" ]]; then
+          echo "${grn}Installing Mcrypt ...${end}"
+          echo ""
+          sleep 3
+          apt-get install php-dev libmcrypt-dev php-pear -y
+          pecl channel-update pecl.php.net
+          yes | pecl install channel://pecl.php.net/mcrypt-1.0.5
+          echo "extension=$MODULES/mcrypt.so" >>/etc/php/8.1/fpm/php.ini
+          echo "extension=$MODULES/mcrypt.so" >>/etc/php/8.1/cli/php.ini
           restart_services
           echo ""
           sleep 1
