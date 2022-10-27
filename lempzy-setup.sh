@@ -472,7 +472,8 @@ EOF
     sleep 1
 }
 
-# Run functions
+# Run Installations
+cd
 update_os
 install_ufw_firewall
 allow_openssh_ufw
