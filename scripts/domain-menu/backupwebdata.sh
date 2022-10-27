@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script author: Miguel Emmara
+# Script author: Muhamad Miguel Emmara
 # Back up web data
 
 set -e
@@ -33,14 +33,13 @@ while true; do
     clear
     echo "########################### SERVER CONFIGURED BY MIGUEL EMMARA ###########################"
     echo "                                   ${grn}BACKUP WEBSITE${end}"
-    echo " __  __ _                  _   ______"
-    echo "|  \/  (_)                | | |  ____|                                    "
-    echo "| \  / |_  __ _ _   _  ___| | | |__   _ __ ___  _ __ ___   __ _ _ __ __ _ "
-    echo "| |\/| | |/ _  | | | |/ _ \ | |  __| | '_   _ \| '_   _ \ / _  | '__/ _  |"
-    echo "| |  | | | (_| | |_| |  __/ | | |____| | | | | | | | | | | (_| | | | (_| |"
-    echo "|_|  |_|_|\__, |\__,_|\___|_| |______|_| |_| |_|_| |_| |_|\__,_|_|  \__,_|"
-    echo "           __/ |"
-    echo "          |___/"
+    echo ""
+    echo "     __                                    "
+    echo "    / /   ___  ____ ___  ____  ____  __  __"
+    echo "   / /   / _ \/ __ \`__ \/ __ \/_  / / / / /"
+    echo "  / /___/  __/ / / / / / /_/ / / /_/ /_/ /"
+    echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
+    echo "                   /_/          /____/_/"
     echo ""
     echo "${grn}Press [CTRL + C] to cancel...${end}"
     echo ""
@@ -85,17 +84,16 @@ mv backup-$domainClear2.zip $domain/
 chown www-data:www-data /var/www/$domain/backup-$domainClear2.zip
 
 clear
+
 # Success Prompt
 echo "Script By"
 echo ""
-echo " __  __ _                  _   ______"
-echo "|  \/  (_)                | | |  ____|                                    "
-echo "| \  / |_  __ _ _   _  ___| | | |__   _ __ ___  _ __ ___   __ _ _ __ __ _ "
-echo "| |\/| | |/ _  | | | |/ _ \ | |  __| | '_   _ \| '_   _ \ / _  | '__/ _  |"
-echo "| |  | | | (_| | |_| |  __/ | | |____| | | | | | | | | | | (_| | | | (_| |"
-echo "|_|  |_|_|\__, |\__,_|\___|_| |______|_| |_| |_|_| |_| |_|\__,_|_|  \__,_|"
-echo "           __/ |"
-echo "          |___/"
+echo "     __                                    "
+echo "    / /   ___  ____ ___  ____  ____  __  __"
+echo "   / /   / _ \/ __ \`__ \/ __ \/_  / / / / /"
+echo "  / /___/  __/ / / / / / /_/ / / /_/ /_/ /"
+echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
+echo "                   /_/          /____/_/"
 echo ""
 
 echo "${blu}Complete! Your new $domain domain has been backed up!"

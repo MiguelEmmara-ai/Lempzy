@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Script author: Miguel Emmara
+# Script author: Muhamad Miguel Emmara
 # Install Filerun
- 
+
 set -e
- 
+
 # Colours
 red=$'\e[1;31m'
 grn=$'\e[1;32m'
@@ -17,9 +17,9 @@ end=$'\e[0m'
 # Check if you are root
 if [ "$(whoami)" != 'root' ]; then
     echo "You have no permission to run $0 as non-root user. Use sudo"
-    exit 1;
+    exit 1
 fi
- 
+
 # Variables
 domain=$1
 domain2=$2
@@ -28,34 +28,32 @@ sitesAvailable='/etc/nginx/sites-available/'
 domainRegex="^[a-zA-Z0-9]"
 
 # Ask the user to add domain name
-while true
-do
-clear
-clear
-echo "########################### SERVER CONFIGURED BY MIGUEL EMMARA ###########################"
-echo "                                   ${grn}INSTALL FILERUN${end}"
-echo " __  __ _                  _   ______"                                    
-echo "|  \/  (_)                | | |  ____|                                    "
-echo "| \  / |_  __ _ _   _  ___| | | |__   _ __ ___  _ __ ___   __ _ _ __ __ _ "
-echo "| |\/| | |/ _  | | | |/ _ \ | |  __| | '_   _ \| '_   _ \ / _  | '__/ _  |"
-echo "| |  | | | (_| | |_| |  __/ | | |____| | | | | | | | | | | (_| | | | (_| |"
-echo "|_|  |_|_|\__, |\__,_|\___|_| |______|_| |_| |_|_| |_| |_|\__,_|_|  \__,_|"
-echo "           __/ |"                                                        
-echo "          |___/"
-echo ""
-echo "${grn}Press [CTRL + C] to cancel...${end}"
+while true; do
+    clear
+    clear
+    echo "########################### SERVER CONFIGURED BY MIGUEL EMMARA ###########################"
+    echo "                                   ${grn}INSTALL FILERUN${end}"
+    echo ""
+    echo "     __                                    "
+    echo "    / /   ___  ____ ___  ____  ____  __  __"
+    echo "   / /   / _ \/ __ \`__ \/ __ \/_  / / / / /"
+    echo "  / /___/  __/ / / / / / /_/ / / /_/ /_/ /"
+    echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
+    echo "                   /_/          /____/_/"
+    echo ""
+    echo "${grn}Press [CTRL + C] to cancel...${end}"
 
-echo "Note* this will erase all of your data on your domain folder, then install Filerun!"
-echo "Preferably install Filerun on your subdomain [eg, manage.domain.com]"
-echo "Feel free to backup any important files before hand!"
-echo ""
-echo "Here all the domain on you server"
-echo ""
-echo "_____________"
-echo "${blu}"
-ls -I default -I phpmyadmin -I filemanager -1 /etc/nginx/sites-enabled/
-echo "${end}_____________"
-echo ""
+    echo "Note* this will erase all of your data on your domain folder, then install Filerun!"
+    echo "Preferably install Filerun on your subdomain [eg, manage.domain.com]"
+    echo "Feel free to backup any important files before hand!"
+    echo ""
+    echo "Here all the domain on you server"
+    echo ""
+    echo "_____________"
+    echo "${blu}"
+    ls -I default -I phpmyadmin -I filemanager -1 /etc/nginx/sites-enabled/
+    echo "${end}_____________"
+    echo ""
     read -p ${grn}"Please provide domain [eg, manage.domain.com]${end}: " domain
     read -p ${grn}"Please type your domain one more time${end}: " domain2
     echo
@@ -63,9 +61,8 @@ echo ""
     echo "Domain you provide does not match, please try again!"
     read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
 done
- 
-until [[ $domain =~ $domainRegex ]]
-do
+
+until [[ $domain =~ $domainRegex ]]; do
     echo -n "Enter valid domain: "
     read domain
 done
@@ -73,12 +70,12 @@ done
 # Check if domain is not there
 FILE=/etc/nginx/sites-available/$domain
 file2=/var/www/$domain
-if [ -f "$FILE" ] || [ -f "$file2" ] ; then
+if [ -f "$FILE" ] || [ -f "$file2" ]; then
     clear
 else
     echo ""
     echo "$domain does not exist, please try again"
-    exit;
+    exit
 fi
 
 # Install Filerun
@@ -89,8 +86,8 @@ unzip FileRun.zip
 chown -R www-data:www-data /var/www/$domain
 chown -R www-data:www-data /var/www/$domain/system/data
 chown www-data:www-data /var/www/
-chown -R $USER:$USER /var/www/$domain		# JUST TO MAKE SURE
-chown -R www-data:www-data /var/www/$domain	# JUST TO MAKE SURE
+chown -R $USER:$USER /var/www/$domain       # JUST TO MAKE SURE
+chown -R www-data:www-data /var/www/$domain # JUST TO MAKE SURE
 
 # Change vhost to no fastcgi cache.
 configName=$domain
@@ -115,28 +112,26 @@ echo ""
 sleep 1
 systemctl restart nginx
 systemctl restart php7.4-fpm.service
-clear
- 
+
 # Success Prompt
+clear
 echo "Script By"
 echo ""
-echo " __  __ _                  _   ______"                                    
-echo "|  \/  (_)                | | |  ____|                                    "
-echo "| \  / |_  __ _ _   _  ___| | | |__   _ __ ___  _ __ ___   __ _ _ __ __ _ "
-echo "| |\/| | |/ _  | | | |/ _ \ | |  __| | '_   _ \| '_   _ \ / _  | '__/ _  |"
-echo "| |  | | | (_| | |_| |  __/ | | |____| | | | | | | | | | | (_| | | | (_| |"
-echo "|_|  |_|_|\__, |\__,_|\___|_| |______|_| |_| |_|_| |_| |_|\__,_|_|  \__,_|"
-echo "           __/ |"                                                        
-echo "          |___/"
+echo "     __                                    "
+echo "    / /   ___  ____ ___  ____  ____  __  __"
+echo "   / /   / _ \/ __ \`__ \/ __ \/_  / / / / /"
+echo "  / /___/  __/ / / / / / /_/ / / /_/ /_/ /"
+echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
+echo "                   /_/          /____/_/"
 echo ""
- 
-    echo "Complete! $domain has been installed with Filerun!"
-    echo "Navigate to ${grn}$domain${end} in your browser to configure Filerun"
-	echo ""
-	echo "Database Name: filerun_db_$domainClear2"
-	echo "User Name: filerun_usr_$domainClear2"
-	echo "Password: $password_filerun"
-	echo ""
- 
+
+echo "Complete! $domain has been installed with Filerun!"
+echo "Navigate to ${grn}$domain${end} in your browser to configure Filerun"
+echo ""
+echo "Database Name: filerun_db_$domainClear2"
+echo "User Name: filerun_usr_$domainClear2"
+echo "Password: $password_filerun"
+echo ""
+
 rm -f /root/filerun.sh
 exit

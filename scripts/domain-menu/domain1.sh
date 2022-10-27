@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script author: Miguel Emmara
+# Script author: Muhamad Miguel Emmara
 # Add Domian + Create Database
 
 #
@@ -18,7 +18,7 @@ end=$'\e[0m'
 # Check if you are root
 if [ "$(whoami)" != 'root' ]; then
     echo "You have no permission to run $0 as non-root user. Use sudo"
-    exit 1;
+    exit 1
 fi
 
 # Variables
@@ -28,34 +28,31 @@ sitesEnable='/etc/nginx/sites-enabled/'
 sitesAvailable='/etc/nginx/sites-available/'
 domainRegex="^[a-zA-Z0-9]"
 # Ask the user to add domain name
-while true
-do
+while true; do
 
-clear
-echo "########################### SERVER CONFIGURED BY MIGUEL EMMARA ###########################"
-echo "                                   ${grn}ADD DOMAIN ONLY${end}"
-echo " __  __ _                  _   ______"                                    
-echo "|  \/  (_)                | | |  ____|                                    "
-echo "| \  / |_  __ _ _   _  ___| | | |__   _ __ ___  _ __ ___   __ _ _ __ __ _ "
-echo "| |\/| | |/ _  | | | |/ _ \ | |  __| | '_   _ \| '_   _ \ / _  | '__/ _  |"
-echo "| |  | | | (_| | |_| |  __/ | | |____| | | | | | | | | | | (_| | | | (_| |"
-echo "|_|  |_|_|\__, |\__,_|\___|_| |______|_| |_| |_|_| |_| |_|\__,_|_|  \__,_|"
-echo "           __/ |"                                                        
-echo "          |___/"
-echo ""
-echo "${grn}Press [CTRL + C] to cancel...${end}"
-echo ""
+    clear
+    echo "########################### SERVER CONFIGURED BY MIGUEL EMMARA ###########################"
+    echo "                                   ${grn}ADD DOMAIN ONLY${end}"
+    echo ""
+    echo "     __                                    "
+    echo "    / /   ___  ____ ___  ____  ____  __  __"
+    echo "   / /   / _ \/ __ \`__ \/ __ \/_  / / / / /"
+    echo "  / /___/  __/ / / / / / /_/ / / /_/ /_/ /"
+    echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
+    echo "                   /_/          /____/_/"
+    echo ""
+    echo "${grn}Press [CTRL + C] to cancel...${end}"
+    echo ""
 
-read -p ${grn}"Please provide your domain${end}: " domain
-read -p ${grn}"Please type your domain one more time${end}: " domain2
-echo
-[ "$domain" = "$domain2" ] && break
-echo "Domain you provide does not match, please try again!"
-read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
+    read -p ${grn}"Please provide your domain${end}: " domain
+    read -p ${grn}"Please type your domain one more time${end}: " domain2
+    echo
+    [ "$domain" = "$domain2" ] && break
+    echo "Domain you provide does not match, please try again!"
+    read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
 done
 
-until [[ $domain =~ $domainRegex ]]
-do
+until [[ $domain =~ $domainRegex ]]; do
     echo -n "Enter valid domain: "
     read domain
 done
@@ -63,13 +60,13 @@ done
 # Check if domain already added
 if [ -e $sitesAvailable$domain ]; then
     echo "This domain already exists. Please delete your domain from the main menu options and try again"
-    exit;
+    exit
 fi
 
 # Check if domain already added var www
 if [ -e /var/www/$domain ]; then
     echo "This domain already exists. Please delete your domain from the main menu options and try again"
-    exit;
+    exit
 fi
 
 ### CREATE DATABASE ###
@@ -79,7 +76,7 @@ domainClear2=${domainClear//-/}
 echo "Type the password for your new $domain database [eg, password123_$domainClear2]"
 echo -n "followed by [ENTER]: "
 read PASS
- 
+
 mysql -uroot <<MYSQL_SCRIPT
 CREATE DATABASE database_$domainClear2;
 CREATE USER 'user_$domainClear2'@'localhost' IDENTIFIED BY '$PASS';
@@ -98,10 +95,9 @@ openssl x509 -req -days 36500 -in $domain.csr -signkey $domain.key -out $domain.
 service nginx reload
 
 # Add html file to the domain
-if ! echo "domain has been added!" > /var/www/$domain/index.html
-then
+if ! echo "domain has been added!" >/var/www/$domain/index.html; then
     echo "There is an ERROR create index.html file"
-    exit;
+    exit
 else
     echo "index.html has been created successfully"
 fi
@@ -125,8 +121,8 @@ sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
 php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/php7dotdeb"
 wget -q $php7_dotdeb -O /etc/php/7.4/fpm/pool.d/$domain.conf
 sed -i "s/domain.com/$domain/g" /etc/php/7.4/fpm/pool.d/$domain.conf
-echo "" >> /etc/php/7.4/fpm/pool.d/$domain.conf
-dos2unix /etc/php/7.4/fpm/pool.d/$domain.conf > /dev/null 2>&1
+echo "" >>/etc/php/7.4/fpm/pool.d/$domain.conf
+dos2unix /etc/php/7.4/fpm/pool.d/$domain.conf >/dev/null 2>&1
 service php7.4-fpm reload
 
 ln -s $sitesAvailable$configName $sitesEnable$configName
@@ -144,21 +140,19 @@ clear
 # Success Prompt
 echo "Script By"
 echo ""
-echo " __  __ _                  _   ______"                                    
-echo "|  \/  (_)                | | |  ____|                                    "
-echo "| \  / |_  __ _ _   _  ___| | | |__   _ __ ___  _ __ ___   __ _ _ __ __ _ "
-echo "| |\/| | |/ _  | | | |/ _ \ | |  __| | '_   _ \| '_   _ \ / _  | '__/ _  |"
-echo "| |  | | | (_| | |_| |  __/ | | |____| | | | | | | | | | | (_| | | | (_| |"
-echo "|_|  |_|_|\__, |\__,_|\___|_| |______|_| |_| |_|_| |_| |_|\__,_|_|  \__,_|"
-echo "           __/ |"                                                        
-echo "          |___/"
+echo "     __                                    "
+echo "    / /   ___  ____ ___  ____  ____  __  __"
+echo "   / /   / _ \/ __ \`__ \/ __ \/_  / / / / /"
+echo "  / /___/  __/ / / / / / /_/ / / /_/ /_/ /"
+echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
+echo "                   /_/          /____/_/"
 echo ""
 
 echo "Complete! Your new $domain domain has been added!"
-  echo "PLEASE SAVE BELOW INFORMATION."
-  echo "Database:   database_$domainClear2"
-  echo "Username:   user_$domainClear2"
-  echo "Password:   $PASS"
-  echo ""
+echo "PLEASE SAVE BELOW INFORMATION."
+echo "Database:   database_$domainClear2"
+echo "Username:   user_$domainClear2"
+echo "Password:   $PASS"
+echo ""
 rm -f /root/domain1.sh
 exit

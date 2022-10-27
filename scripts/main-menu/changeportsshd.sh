@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script author: Miguel Emmara
+# Script author: Muhamad Miguel Emmara
 # Change Port SSHD
 
 set -e
@@ -20,14 +20,13 @@ userInput=$1
 clear
 echo "########################### SERVER CONFIGURED BY MIGUEL EMMARA ###########################"
 echo "                                   ${grn}CHANGE PORT SSH${end}"
-echo " __  __ _                  _   ______"
-echo "|  \/  (_)                | | |  ____|                                    "
-echo "| \  / |_  __ _ _   _  ___| | | |__   _ __ ___  _ __ ___   __ _ _ __ __ _ "
-echo "| |\/| | |/ _  | | | |/ _ \ | |  __| | '_   _ \| '_   _ \ / _  | '__/ _  |"
-echo "| |  | | | (_| | |_| |  __/ | | |____| | | | | | | | | | | (_| | | | (_| |"
-echo "|_|  |_|_|\__, |\__,_|\___|_| |______|_| |_| |_|_| |_| |_|\__,_|_|  \__,_|"
-echo "           __/ |"
-echo "          |___/"
+echo ""
+echo "     __                                    "
+echo "    / /   ___  ____ ___  ____  ____  __  __"
+echo "   / /   / _ \/ __ \`__ \/ __ \/_  / / / / /"
+echo "  / /___/  __/ / / / / / /_/ / / /_/ /_/ /"
+echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
+echo "                   /_/          /____/_/"
 echo ""
 echo "${grn}Press [CTRL + C] to cancel...${end}"
 
@@ -45,14 +44,12 @@ service ssh restart
 clear
 echo "Script By"
 echo ""
-echo " __  __ _                  _   ______"
-echo "|  \/  (_)                | | |  ____|                                    "
-echo "| \  / |_  __ _ _   _  ___| | | |__   _ __ ___  _ __ ___   __ _ _ __ __ _ "
-echo "| |\/| | |/ _  | | | |/ _ \ | |  __| | '_   _ \| '_   _ \ / _  | '__/ _  |"
-echo "| |  | | | (_| | |_| |  __/ | | |____| | | | | | | | | | | (_| | | | (_| |"
-echo "|_|  |_|_|\__, |\__,_|\___|_| |______|_| |_| |_|_| |_| |_|\__,_|_|  \__,_|"
-echo "           __/ |"
-echo "          |___/"
+echo "     __                                    "
+echo "    / /   ___  ____ ___  ____  ____  __  __"
+echo "   / /   / _ \/ __ \`__ \/ __ \/_  / / / / /"
+echo "  / /___/  __/ / / / / / /_/ / / /_/ /_/ /"
+echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
+echo "                   /_/          /____/_/"
 echo ""
 echo "Your Port number has been changed to ${grn}$userInput${end}"
 echo "${blu}Try re-login your ssh with your new port number.${end}"

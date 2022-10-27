@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script author: Miguel Emmara
+# Script author: Muhamad Miguel Emmara
 # Show Domain
 
 set -e
