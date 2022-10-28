@@ -1,4 +1,4 @@
-<p align="center"><a href="[https://miguelemmara.me/](https://github.com/MiguelEmmara-ai/Lempzy)" target="_blank"><img src="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/logo/lemp.jpeg" width="400" alt="Lemp Logo"></a><br>image source: Techkylabs</p>
+<p align="center"><a href="[https://miguelemmara.me/](https://github.com/MiguelEmmara-ai/Lempzy)" target="_blank"><img src="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/logo/lemp.jpeg" width="400" alt="Lemp Logo"></a><br>Image Source: Techkylabs</p>
 
 # Lempzy
 Lempzy is a Simple All In One script to install LEMP Server Stack (Linux eNginx Mysql PHP) with just a single command line.
@@ -6,25 +6,24 @@ Lempzy is a Simple All In One script to install LEMP Server Stack (Linux eNginx 
 # Menu
 ![Lempzy](https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/screenshots/Lempzy-main-menu.PNG "Main Menu")
 
-## Fully Optimize
-The installation will also optimize the configuration within The LEMP Stack.
+## Features
+Lempzy will also optimize the configuration within The LEMP Stack.
+* Nginx - A high performance web server and a reverse proxy server.
+  * Fast FastCGI Caching
+  * Custom Optimize Nginx Config
+* PHP - General-purpose scripting language that can be used to develop dynamic and interactive websites.
+  * php-fpm
+  * php-mysql
+  * Custom Optimize PHP Config
+* MariaDB - When it comes to performing queries or replication, MariaDB is faster than MySQL.
+* OpenSSL - Applications that secure communications over computer networks against eavesdropping or need to identify the party at the other end.
+  * Free SSL certificates from Let's Encrypt
+* Interactive menu for convenient
 
 ## Installation List
 Here all the list that the script will install
-- Nginx
-- MariaDB (We will use mariadb as our database)
-- PHP 7
-- UFW Firewall
-- Memcached
-- FASTCGI_CACHE
-- IONCUBE
-- MCRYPT
-- HTOP
-- NETSTAT
-- OPEN SSL
-- AB BENCHMARKING TOOL
-- ZIP AND UNZIP
-- FFMPEG AND IMAGEMAGICK
+<br>
+[Full List](https://github.com/MiguelEmmara-ai/Lempzy/blob/v1.0/full-list.txt)
 
 ## Prerequisites
 What things you need to make sure before proceed.
@@ -50,6 +49,9 @@ Once everything is set up, run this command below in /root directory to open the
 
 ## Authors
 * **Muhamad Miguel Emmara** - *Lempzy*
+
+## Current Release
+*Lempzy - V1.0*
 
 ## License
 Copyright 2022. Code released under the MIT license.
