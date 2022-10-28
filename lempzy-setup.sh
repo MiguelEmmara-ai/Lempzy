@@ -69,8 +69,16 @@ update_os() {
           sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'a'"'"';/' /etc/needrestart/needrestart.conf
           sudo apt -y remove needrestart
      fi
+
      apt update
-     apt upgrade -y
+
+     if [[ "${OS_VERSION}" == "11" ]]; then
+          # Non-interactive apt upgrade
+          sudo DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade
+     else
+          apt upgrade -y
+     fi
+
      echo ""
      sleep 1
 }
@@ -510,7 +518,7 @@ EOF
 }
 
 # Run Installations
-cd
+cd # Make sure we are in root directory
 update_os
 install_ufw_firewall
 allow_openssh_ufw
