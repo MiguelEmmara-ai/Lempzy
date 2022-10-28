@@ -1,7 +1,7 @@
 [domain.com]
 user = www-data
 group = www-data
-listen = /run/php/php7.4-domain.com-fpm.sock
+listen = /run/php/phpX.X-domain.com-fpm.sock
 listen.owner = www-data
 listen.group = www-data
 pm = ondemand

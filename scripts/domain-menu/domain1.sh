@@ -27,6 +27,10 @@ domain2=$3
 sitesEnable='/etc/nginx/sites-enabled/'
 sitesAvailable='/etc/nginx/sites-available/'
 domainRegex="^[a-zA-Z0-9]"
+
+# Get PHP Installed Version
+PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
+
 # Ask the user to add domain name
 while true; do
 
@@ -105,26 +109,28 @@ chown -R $USER:$USER /var/www/$domain
 nginx -t
 systemctl reload nginx
 chown -R www-data:www-data /var/www/$domain
-systemctl restart php7.4-fpm.service
+systemctl restart php$PHP_VERSION-fpm.service
 systemctl restart nginx
 
 # Add Cache to the server
 mkdir -p /etc/nginx/mycache/$domain
 
-# Add nginx Vhost for domain
+# Add nginx Vhost FastCGI for domain
 configName=$domain
 cd $sitesAvailable
 wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/vhost-fastcgi -O $domain
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
+sed -i "s/phpX.X/$PHP_VERSION/g" $sitesAvailable$configName
 
 # TODO FIX ALL DOTDEB PROBLEM MAKE IT DYNAMIC
 # PHP POOL SETTING
 php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/php7dotdeb"
-wget -q $php7_dotdeb -O /etc/php/7.4/fpm/pool.d/$domain.conf
-sed -i "s/domain.com/$domain/g" /etc/php/7.4/fpm/pool.d/$domain.conf
-echo "" >>/etc/php/7.4/fpm/pool.d/$domain.conf
-dos2unix /etc/php/7.4/fpm/pool.d/$domain.conf >/dev/null 2>&1
-service php7.4-fpm reload
+wget -q $php7_dotdeb -O /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
+sed -i "s/domain.com/$domain/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
+sed -i "s//run/php/phpX.X-domain.com-fpm.sock//run/php/php$PHP_VERSION-$domain-fpm.sock/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
+echo "" >>/etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
+dos2unix /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf >/dev/null 2>&1
+service php$PHP_VERSION-fpm reload
 
 ln -s $sitesAvailable$configName $sitesEnable$configName
 nginx -t
@@ -135,7 +141,7 @@ echo "Restart Nginx & PHP-FPM ..."
 echo ""
 sleep 1
 systemctl restart nginx
-systemctl restart php7.4-fpm.service
+systemctl restart php$PHP_VERSION-fpm.service
 clear
 
 # Success Prompt
