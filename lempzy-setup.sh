@@ -486,7 +486,7 @@ configuring_php_fpm_nginx() {
      sleep 3
      rm -rf /etc/nginx/nginx.conf
      cd /etc/nginx/
-     wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v.1/scripts/nginx.conf -O nginx.conf
+     wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/scripts/nginx.conf -O nginx.conf
      dos2unix /etc/nginx/nginx.conf
      cd
      echo ""
@@ -542,7 +542,7 @@ change_login_greetings
 
 # Menu Script
 cd
-wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v.1/scripts/lempzy.sh -O lempzy.sh
+wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/scripts/lempzy.sh -O lempzy.sh
 dos2unix lempzy.sh
 chmod +x lempzy.sh
 
