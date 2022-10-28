@@ -121,7 +121,11 @@ install_mariadb() {
 # Install PHP
 install_php() {
      if [[ "${OS_VERSION}" == "10" ]]; then
-          echo "Debian 10 PHP"
+          echo "${grn}Installing PHP ...${end}"
+          apt install php7.3-fpm php-mysql -y
+          apt install php7.3-common php7.3-zip php7.3-curl php7.3-xml php7.3-xmlrpc php7.3-json php7.3-mysql php7.3-pdo php7.3-gd php7.3-imagick php7.3-ldap php7.3-imap php7.3-mbstring php7.3-intl php7.3-cli php7.3-recode php7.3-tidy php7.3-bcmath php7.3-opcache -y
+          echo ""
+          sleep 1
 
      elif [[ "${OS_VERSION}" == "11" ]]; then
           echo "${grn}Installing PHP ...${end}"
@@ -133,6 +137,7 @@ install_php() {
           sleep 1
 
      elif [[ "${OS_VERSION}" == "18.04" ]]; then
+          echo "${grn}Installing PHP ...${end}"
           apt-get install software-properties-common
           add-apt-repository -y ppa:ondrej/php
           apt update
