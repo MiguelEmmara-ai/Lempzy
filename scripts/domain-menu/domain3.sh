@@ -26,6 +26,10 @@ domain2=$3
 sitesEnable='/etc/nginx/sites-enabled/'
 sitesAvailable='/etc/nginx/sites-available/'
 domainRegex="^[a-zA-Z0-9]"
+
+# Get PHP Installed Version
+PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
+
 # Ask the user to add domain name
 while true; do
 
@@ -104,7 +108,7 @@ chown -R $USER:$USER /var/www/$domain
 nginx -t
 systemctl reload nginx
 chown -R www-data:www-data /var/www/$domain
-systemctl restart php7.4-fpm.service
+systemctl restart php$PHP_VERSION-fpm.service
 systemctl restart nginx
 
 # Add Cache to the server
@@ -115,14 +119,16 @@ configName=$domain
 cd $sitesAvailable
 wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/vhost-fastcgi -O $domain
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
+sed -i "s/phpX.X/php$PHP_VERSION/g" $sitesAvailable$configName
 
 # PHP POOL SETTING
 php_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/phpdotdeb"
-wget -q $php_dotdeb -O /etc/php/7.4/fpm/pool.d/$domain.conf
-sed -i "s/domain.com/$domain/g" /etc/php/7.4/fpm/pool.d/$domain.conf
-echo "" >>/etc/php/7.4/fpm/pool.d/$domain.conf
-dos2unix /etc/php/7.4/fpm/pool.d/$domain.conf >/dev/null 2>&1
-service php7.4-fpm reload
+wget -q $php_dotdeb -O /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
+sed -i "s/domain.com/$domain/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
+sed -i "s/phpX.X/php$PHP_VERSION/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
+echo "" >>/etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
+dos2unix /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf >/dev/null 2>&1
+service php$PHP_VERSION-fpm reload
 
 ln -s $sitesAvailable$configName $sitesEnable$configName
 nginx -t
@@ -133,7 +139,7 @@ echo "Restart Nginx & PHP-FPM ..."
 echo ""
 sleep 1
 systemctl restart nginx
-systemctl restart php7.4-fpm.service
+systemctl restart php$PHP_VERSION-fpm.service
 clear
 
 # Success Prompt

@@ -122,7 +122,6 @@ wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/script
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
 sed -i "s/phpX.X/php$PHP_VERSION/g" $sitesAvailable$configName
 
-# TODO FIX ALL DOTDEB PROBLEM MAKE IT DYNAMIC
 # PHP POOL SETTING
 php_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/phpdotdeb"
 wget -q $php_dotdeb -O /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
