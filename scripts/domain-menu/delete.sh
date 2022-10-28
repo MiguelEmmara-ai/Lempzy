@@ -14,6 +14,12 @@ mag=$'\e[1;35m'
 cyn=$'\e[1;36m'
 end=$'\e[0m'
 
+# Check if you are root
+if [ "$(whoami)" != 'root' ]; then
+    echo "You have no permission to run $0 as non-root user. Use sudo"
+    exit 1
+fi
+
 # Variables.
 domain=$1
 db=$2
@@ -24,11 +30,8 @@ sitesEnable='/etc/nginx/sites-enabled/'
 sitesAvailable='/etc/nginx/sites-available/'
 domainRegex="^[a-zA-Z0-9]"
 
-# Check if you are root
-if [ "$(whoami)" != 'root' ]; then
-    echo "You have no permission to run $0 as non-root user. Use sudo"
-    exit 1
-fi
+# Get PHP Installed Version
+PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
 
 # Ask the user to add domain name
 while true; do
@@ -95,7 +98,7 @@ rm -fr /var/www/$domain
 unlink /etc/nginx/sites-enabled/$domain
 rm -f /etc/nginx/sites-available/$domain
 rm -f /var/log/nginx/$domain.error.log
-rm -f /etc/php/7.4/fpm/pool.d/$domain.conf
+rm -f /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
 
 # Delete ssl.
 rm -rf /etc/letsencrypt/live/$domain /etc/letsencrypt/renewal/$domain.conf /etc/letsencrypt/archive/$domain

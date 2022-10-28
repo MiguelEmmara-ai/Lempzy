@@ -27,6 +27,9 @@ sitesEnable='/etc/nginx/sites-enabled/'
 sitesAvailable='/etc/nginx/sites-available/'
 domainRegex="^[a-zA-Z0-9]"
 
+# Get PHP Installed Version
+PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
+
 # Ask the user to add domain name
 while true; do
     clear
