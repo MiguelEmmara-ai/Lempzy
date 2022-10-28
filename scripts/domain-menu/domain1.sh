@@ -124,7 +124,7 @@ sed -i "s/phpX.X/php$PHP_VERSION/g" $sitesAvailable$configName
 
 # TODO FIX ALL DOTDEB PROBLEM MAKE IT DYNAMIC
 # PHP POOL SETTING
-php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/php7dotdeb"
+php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/php7dotdeb"
 wget -q $php7_dotdeb -O /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
 sed -i "s/domain.com/$domain/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
 sed -i "s/run/php/phpX.X-domain.com-fpm.sock/run/php/php$PHP_VERSION-$domain-fpm.sock/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
