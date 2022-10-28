@@ -55,3 +55,9 @@ Once everything is set up, run this command below in /root directory to open the
 
 ## License
 Copyright 2022. Code released under the MIT license.
+=======
+# Lemzy
+The Simple All In One Lemp Stack (Linux eNginx Mysql Php) Server Installation In One Click
+
+# Under Development
+
