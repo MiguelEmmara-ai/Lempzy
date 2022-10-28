@@ -120,14 +120,14 @@ configName=$domain
 cd $sitesAvailable
 wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/vhost-fastcgi -O $domain
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
-sed -i "s/phpX.X/$PHP_VERSION/g" $sitesAvailable$configName
+sed -i "s/phpX.X/php$PHP_VERSION/g" $sitesAvailable$configName
 
 # TODO FIX ALL DOTDEB PROBLEM MAKE IT DYNAMIC
 # PHP POOL SETTING
 php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/LempStackUbuntu20.04/development/scripts/php7dotdeb"
 wget -q $php7_dotdeb -O /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
 sed -i "s/domain.com/$domain/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
-sed -i "s//run/php/phpX.X-domain.com-fpm.sock//run/php/php$PHP_VERSION-$domain-fpm.sock/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
+sed -i "s/run/php/phpX.X-domain.com-fpm.sock/run/php/php$PHP_VERSION-$domain-fpm.sock/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
 echo "" >>/etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
 dos2unix /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf >/dev/null 2>&1
 service php$PHP_VERSION-fpm reload
