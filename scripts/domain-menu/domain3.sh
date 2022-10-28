@@ -117,8 +117,8 @@ wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/script
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
 
 # PHP POOL SETTING
-php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/php7dotdeb"
-wget -q $php7_dotdeb -O /etc/php/7.4/fpm/pool.d/$domain.conf
+php_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/phpdotdeb"
+wget -q $php_dotdeb -O /etc/php/7.4/fpm/pool.d/$domain.conf
 sed -i "s/domain.com/$domain/g" /etc/php/7.4/fpm/pool.d/$domain.conf
 echo "" >>/etc/php/7.4/fpm/pool.d/$domain.conf
 dos2unix /etc/php/7.4/fpm/pool.d/$domain.conf >/dev/null 2>&1
