@@ -14,6 +14,9 @@ mag=$'\e[1;35m'
 cyn=$'\e[1;36m'
 end=$'\e[0m'
 
+# Get PHP Installed Version
+PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
+
 main_menu() {
   NORMAL=$(echo "\033[m")
   MENU=$(echo "\033[36m")   #Blue
@@ -103,7 +106,7 @@ main_menu() {
 
       8)
         clear
-        systemctl restart php7.4-fpm.service
+        systemctl restart php$PHP_VERSION-fpm.service
         systemctl restart nginx
         echo "${cyn}Server Refreshed!${end}"
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
