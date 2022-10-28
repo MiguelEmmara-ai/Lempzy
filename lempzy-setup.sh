@@ -89,7 +89,7 @@ allow_openssh_ufw() {
      echo "${grn}Allow openSSH UFW ...${end}"
      echo ""
      sleep 3
-     ufw allow OpenSSH
+     sudo ufw allow OpenSSH
      echo ""
      sleep 1
 }
@@ -99,7 +99,7 @@ enabling_ufw() {
      echo "${grn}Enabling UFW ...${end}"
      echo ""
      sleep 3
-     yes | ufw enable
+     yes | sudo ufw enable
      echo "y"
      echo ""
      sleep 1
@@ -124,7 +124,13 @@ install_php() {
           echo "Debian 10 PHP"
 
      elif [[ "${OS_VERSION}" == "11" ]]; then
-          echo "Debian 11 PHP"
+          echo "${grn}Installing PHP ...${end}"
+          echo ""
+          sleep 3
+          apt install php7.4-fpm php-mysql -y
+          apt-get install php7.4 php7.4-common php7.4-gd php7.4-mysql php7.4-imap php7.4-cli php7.4-cgi php-pear mcrypt imagemagick libruby php7.4-curl php7.4-intl php7.4-pspell php7.4-sqlite3 php7.4-tidy php7.4-xmlrpc php7.4-xsl memcached php-memcache php-imagick php7.4-zip php7.4-mbstring memcached php7.4-soap php7.4-fpm php7.4-opcache php-apcu -y
+          echo ""
+          sleep 1
 
      elif [[ "${OS_VERSION}" == "18.04" ]]; then
           apt-get install software-properties-common
@@ -176,7 +182,7 @@ install_nginx() {
      echo ""
      sleep 3
      apt-get install nginx -y
-     ufw allow 'Nginx HTTP'
+     sudo ufw allow 'Nginx HTTP'
      systemctl start nginx
      echo ""
      sleep 1
@@ -421,8 +427,8 @@ install_openssl() {
      cd /etc/ssl/certs/
      openssl dhparam -dsaparam -out dhparam.pem 4096
      cd
-     ufw allow 'Nginx Full'
-     ufw delete allow 'Nginx HTTP'
+     sudo ufw allow 'Nginx Full'
+     sudo ufw delete allow 'Nginx HTTP'
      echo ""
      sleep 1
 }
