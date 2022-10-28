@@ -403,7 +403,7 @@ install_htop() {
      echo "${grn}Installing HTOP ...${end}"
      echo ""
      sleep 3
-     apt-get install htop
+     apt-get install htop -y
      echo ""
      sleep 1
 }
