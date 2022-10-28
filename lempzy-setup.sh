@@ -67,6 +67,7 @@ update_os() {
      # By default this is set to "interactive" mode which causes the interruption of scripts.
      if [[ "${OS_VERSION}" == "22.04" ]] || [[ "${OS_VERSION}" == "22.10" ]]; then
           sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'a'"'"';/' /etc/needrestart/needrestart.conf
+          sudo apt -y remove needrestart
      fi
      apt update
      apt upgrade -y
