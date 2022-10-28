@@ -127,7 +127,7 @@ sed -i "s/phpX.X/php$PHP_VERSION/g" $sitesAvailable$configName
 php7_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/php7dotdeb"
 wget -q $php7_dotdeb -O /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
 sed -i "s/domain.com/$domain/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
-sed -i "s/phpX.X-a.com-fpm.sock/php$PHP_VERSION-$domain-fpm.sock/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
+sed -i "s/phpX.X/php$PHP_VERSION/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
 echo "" >>/etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
 dos2unix /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf >/dev/null 2>&1
 service php$PHP_VERSION-fpm reload
