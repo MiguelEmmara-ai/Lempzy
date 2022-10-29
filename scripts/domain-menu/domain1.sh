@@ -119,7 +119,7 @@ mkdir -p /etc/nginx/mycache/$domain
 configName=$domain
 cd $sitesAvailable
 # wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/vhost-fastcgi -O $domain
-mv root/Lempzy/scripts/vhost-fastcgi $domain
+mv /root/Lempzy/scripts/vhost-fastcgi $domain
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
 sed -i "s/phpX.X/php$PHP_VERSION/g" $sitesAvailable$configName
 
