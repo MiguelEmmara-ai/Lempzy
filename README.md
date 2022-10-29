@@ -35,7 +35,7 @@ What things you need to make sure before proceed.
 To Install Lempzy, all you need to do is to run a single command line and it will install everything.
 
 ```
-sudo apt-get install git && git clone -q https://github.com/MiguelEmmara-ai/Lempzy.git && cd Lempzy && sudo ./lempzy-setup.sh
+sudo apt-get install git && git clone -q https://github.com/MiguelEmmara-ai/Lempzy.git && cd Lempzy && chmod +x lempzy-setup.sh && sudo ./lempzy-setup.sh
 
 ```
 
