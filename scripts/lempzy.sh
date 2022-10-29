@@ -103,19 +103,43 @@ main_menu() {
         ;;
 
       5)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/addons/rainloop.sh -O ~/rainloop.sh && dos2unix ~/rainloop.sh && bash ~/rainloop.sh
+        # Install Rainloop
+        RAINLOOP=/root/Lempzy/scripts/addons/rainloop.sh
+
+        if test -f "$RAINLOOP"; then
+          source $RAINLOOP
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Install RAINLOOP${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
 
       6)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/addons/filerun.sh -O ~/filerun.sh && dos2unix ~/filerun.sh && bash ~/filerun.sh
+        # Install Filerun
+        FILERUN=/root/Lempzy/scripts/addons/filerun.sh
+
+        if test -f "$FILERUN"; then
+          source $FILERUN
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Install Filerun${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
 
       7)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/main-menu/changeportsshd.sh -O ~/changeportsshd.sh && dos2unix ~/changeportsshd.sh && bash ~/changeportsshd.sh
+        # Change Port SSHD
+        CHANGE_PORT_SSHD=/root/Lempzy/scripts/main-menu/changeportsshd.sh
+
+        if test -f "$CHANGE_PORT_SSHD"; then
+          source $CHANGE_PORT_SSHD
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Change Port${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
@@ -138,13 +162,30 @@ main_menu() {
         ;;
 
       10)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/addons/invoiceninja.sh -O ~/invoiceninja.sh && dos2unix ~/invoiceninja.sh && bash ~/invoiceninja.sh
+        # Install Invoiceninja
+        INVOICENINJA=/root/Lempzy/scripts/addons/invoiceninja.sh
+
+        if test -f "$INVOICENINJA"; then
+          source $INVOICENINJA
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Install Invoiceninja${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
 
       11)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/main-menu/restartserver.sh -O ~/restartserver.sh && dos2unix ~/restartserver.sh && bash ~/restartserver.sh
+
+        # Restart Server
+        RESTART_SERVER=/root/Lempzy/scripts/main-menu/restartserver.sh
+
+        if test -f "$RESTART_SERVER"; then
+          source $RESTART_SERVER
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Restart Server${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
@@ -287,13 +328,29 @@ sub_menu1() {
         ;;
 
       6)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/domain-menu/delete.sh -O ~/delete.sh && dos2unix ~/delete.sh && bash ~/delete.sh
+        # Delete Domain
+        DELETE_DOMAIN=/root/Lempzy/scripts/domain-menu/delete.sh
+
+        if test -f "$DELETE_DOMAIN"; then
+          source $DELETE_DOMAIN
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Delete Domains${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
 
       7)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/domain-menu/backupwebdata.sh -O ~/backupwebdata.sh && dos2unix ~/backupwebdata.sh && bash ~/backupwebdata.sh
+        # Cannot Back Up Web Data
+        BACKUP_WEB_DATA=/root/Lempzy/scripts/domain-menu/backupwebdata.sh
+
+        if test -f "$BACKUP_WEB_DATA"; then
+          source $BACKUP_WEB_DATA
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Back Up Web Data${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
@@ -360,13 +417,30 @@ sub_menu2() {
       case $submenudomain2 in
 
       1)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/database-menu/create-database.sh -O ~/create-database.sh && dos2unix ~/create-database.sh && bash ~/create-database.sh
+        # Create Database
+        CREATE_DATABASE=/root/Lempzy/scripts/database-menu/create-database.sh
+
+        if test -f "$CREATE_DATABASE"; then
+          source $CREATE_DATABASE
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Create Database${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu2
         ;;
 
       2)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/database-menu/delete-database.sh -O ~/delete-database.sh && dos2unix ~/delete-database.sh && bash ~/delete-database.sh
+
+        # Delete Database
+        DELETE_DATABASE=/root/Lempzy/scripts/database-menu/delete-database.sh
+
+        if test -f "$DELETE_DATABASE"; then
+          source $DELETE_DATABASE
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Delete Database${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu2
         ;;
