@@ -25,4 +25,3 @@ echo "${end}___________"
 echo ""
 
 rm -f /root/show-databases.sh
-exit

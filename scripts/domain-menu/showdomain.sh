@@ -30,4 +30,3 @@ echo "${end}_____________"
 echo ""
 
 rm -f /root/showdomain.sh
-exit
