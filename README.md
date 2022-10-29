@@ -52,7 +52,7 @@ cd
 * **Muhamad Miguel Emmara** - *Lempzy*
 
 ## Current Release
-*Lempzy - V1.0*
+*Lempzy - V1.2*
 
 ## License
 Copyright 2022. Code released under the MIT license.
