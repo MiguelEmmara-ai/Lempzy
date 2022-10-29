@@ -7,7 +7,7 @@
 # Installation List:
 # Nginx
 # MariaDB (We will use MariaDB as our database)
-# PHP 7
+# PHP
 # UFW Firewall
 # Memcached
 # FASTCGI_CACHE
@@ -69,7 +69,161 @@ else
      exit
 fi
 
-# Menu Script
+# Installing UFW Firewall
+INSTALL_UFW_FIREWALL=scripts/install/install_firewall.sh
+
+if test -f "$INSTALL_UFW_FIREWALL"; then
+     source $INSTALL_UFW_FIREWALL
+else
+     echo "${red}Cannot Install UFW Firewall${end}"
+     exit
+fi
+
+# Install MariaDB
+INSTALL_MARIADB=scripts/install/install_mariadb.sh
+
+if test -f "$INSTALL_MARIADB"; then
+     source $INSTALL_MARIADB
+else
+     echo "${red}Cannot Install MariaDB${end}"
+     exit
+fi
+
+# Install PHP And Configure PHP
+INSTALL_PHP=scripts/install/install_php.sh
+
+if test -f "$INSTALL_PHP"; then
+     source $INSTALL_PHP
+else
+     echo "${red}Cannot Install PHP${end}"
+     exit
+fi
+
+# Install, Start, And Configure nginx
+INSTALL_NGINX=scripts/install/install_nginx.sh
+
+if test -f "$INSTALL_NGINX"; then
+     source $INSTALL_NGINX
+else
+     echo "${red}Cannot Install Nginx${end}"
+     exit
+fi
+
+# Install Memcached
+INSTALL_MEMCACHED=scripts/install/install_memcached.sh
+
+if test -f "$INSTALL_MEMCACHED"; then
+     source $INSTALL_MEMCACHED
+else
+     echo "${red}Cannot Install Memcached${end}"
+     exit
+fi
+
+# Install Ioncube
+INSTALL_IONCUBE=scripts/install/install_ioncube.sh
+
+if test -f "$INSTALL_IONCUBE"; then
+     source $INSTALL_IONCUBE
+else
+     echo "${red}Cannot Install Ioncube${end}"
+     exit
+fi
+
+# Install Mcrypt
+INSTALL_MCRPYT=scripts/install/install_mcrpyt.sh
+
+if test -f "$INSTALL_MCRPYT"; then
+     source $INSTALL_MCRPYT
+else
+     echo "${red}Cannot Install Mcrypt${end}"
+     exit
+fi
+
+# Install HTOP
+INSTALL_HTOP=scripts/install/install_htop.sh
+
+if test -f "$INSTALL_HTOP"; then
+     source $INSTALL_HTOP
+else
+     echo "${red}Cannot Install HTOP${end}"
+     exit
+fi
+
+# Install Netstat
+INSTALL_NETSTAT=scripts/install/install_netstat.sh
+
+if test -f "$INSTALL_NETSTAT"; then
+     source $INSTALL_NETSTAT
+else
+     echo "${red}Cannot Install Netstat${end}"
+     exit
+fi
+
+# Install OpenSSL
+INSTALL_OPENSSL=scripts/install/install_openssl.sh
+
+if test -f "$INSTALL_OPENSSL"; then
+     source $INSTALL_OPENSSL
+else
+     echo "${red}Cannot Install OpenSSL${end}"
+     exit
+fi
+
+# Install AB BENCHMARKING TOOL
+INSTALL_AB=scripts/install/install_openssl.sh
+
+if test -f "$INSTALL_AB"; then
+     source $INSTALL_AB
+else
+     echo "${red}Cannot Install AB BENCHMARKING TOOL${end}"
+     exit
+fi
+
+# Install ZIP AND UNZIP
+INSTALL_ZIPS=scripts/install/install_zips.sh
+
+if test -f "$INSTALL_ZIPS"; then
+     source $INSTALL_ZIPS
+else
+     echo "${red}Cannot Install ZIP AND UNZIP${end}"
+     exit
+fi
+
+# Install FFMPEG and IMAGEMAGICK
+INSTALL_FFMPEG=scripts/install/install_ffmpeg.sh
+
+if test -f "$INSTALL_FFMPEG"; then
+     source $INSTALL_FFMPEG
+else
+     echo "${red}Cannot Install ZIP AND UNZIP${end}"
+     exit
+fi
+
+# Change Login Greeting
+change_login_greetings() {
+    echo "${grn}Change Login Greeting ...${end}"
+    echo ""
+    sleep 3
+
+cat > .bashrc << EOF
+echo "########################### SERVER CONFIGURED BY LEMPZY ###########################"
+echo " ######################## FULL INSTRUCTIONS GO TO MIGUELEMMARA.ME ####################### "
+echo ""
+echo "     __                                    "
+echo "    / /   ___  ____ ___  ____  ____  __  __"
+echo "   / /   / _ \/ __ \\\`__ \/ __ \/_  / / / / /"
+echo "  / /___/  __/ / / / / / /_/ / / /_/ /_/ /"
+echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
+echo "                   /_/          /____/_/"
+echo ""
+./lempzy.sh
+EOF
+
+    echo ""
+    sleep 1
+}
+
+# Menu Script Permission Setting
 dos2unix scripts/lempzy.sh
 chmod +x scripts/lempzy.sh
 
@@ -104,6 +258,5 @@ echo " *   *      *      *   *    *   *    *        *          *      *        *
 echo " *   *    *****     ***      ***     *****    *****      *      *****     ***     *   * "
 echo "*************** OPEN MENU BY TYPING ${grn}./lempzy.sh${end} IN ROOT DIRECTORY ************************"
 echo ""
-
 
 exit
