@@ -1,0 +1,14 @@
+- Nginx
+- MariaDB (We will use mariadb as our database)
+- PHP
+- UFW Firewall
+- Memcached
+- FASTCGI_CACHE
+- IONCUBE
+- MCRYPT
+- HTOP
+- NETSTAT
+- OPEN SSL
+- AB BENCHMARKING TOOL
+- ZIP AND UNZIP
+- FFMPEG AND IMAGEMAGICK
