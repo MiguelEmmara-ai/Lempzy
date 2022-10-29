@@ -195,6 +195,3 @@ echo "Database:   database_$domainClear2"
 echo "Username:   user_$domainClear2"
 echo "Password:   $PASS"
 echo ""
-
-rm -f /root/domain2.sh
-exit
