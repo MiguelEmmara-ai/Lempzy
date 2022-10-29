@@ -237,6 +237,7 @@ EOF
 }
 
 # Menu Script Permission Setting
+cp scripts/lempzy.sh /root
 dos2unix scripts/lempzy.sh
 chmod +x scripts/lempzy.sh
 
