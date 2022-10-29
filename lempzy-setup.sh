@@ -238,8 +238,8 @@ EOF
 
 # Menu Script Permission Setting
 cp scripts/lempzy.sh /root
-dos2unix scripts/lempzy.sh
-chmod +x scripts/lempzy.sh
+dos2unix /root/lempzy.sh
+chmod +x /root/lempzy.sh
 
 # Success Prompt
 clear
