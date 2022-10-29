@@ -114,16 +114,15 @@ systemctl restart nginx
 # Add Cache to the server
 mkdir -p /etc/nginx/mycache/$domain
 
-# Add nginx Vhost for domain
+# Add nginx Vhost FastCGI for domain
 configName=$domain
 cd $sitesAvailable
-wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/vhost-fastcgi -O $domain
+cp /root/Lempzy/scripts/vhost-fastcgi $sitesAvailable$domain
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
 sed -i "s/phpX.X/php$PHP_VERSION/g" $sitesAvailable$configName
 
 # PHP POOL SETTING
-php_dotdeb="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/phpdotdeb"
-wget -q $php_dotdeb -O /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
+cp /root/Lempzy/scripts/phpdotdeb /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
 sed -i "s/domain.com/$domain/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
 sed -i "s/phpX.X/php$PHP_VERSION/g" /etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf
 echo "" >>/etc/php/$PHP_VERSION/fpm/pool.d/$domain.conf

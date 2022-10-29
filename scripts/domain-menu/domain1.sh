@@ -3,7 +3,6 @@
 # Script author: Muhamad Miguel Emmara
 # Add Domian + Create Database
 
-#
 set -e
 
 # Colours
