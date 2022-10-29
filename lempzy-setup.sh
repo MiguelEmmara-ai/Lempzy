@@ -7,7 +7,7 @@
 # Installation List:
 # Nginx
 # MariaDB (We will use MariaDB as our database)
-# PHP 7
+# PHP
 # UFW Firewall
 # Memcached
 # FASTCGI_CACHE
@@ -32,14 +32,14 @@ mag=$'\e[1;35m'
 cyn=$'\e[1;36m'
 end=$'\e[0m'
 
-## To Ensure Correct Os Supported Version Is Use
+# To Ensure Correct Os Supported Version Is Use
 OS_VERSION=$(lsb_release -rs)
 if [[ "${OS_VERSION}" != "10" ]] && [[ "${OS_VERSION}" != "11" ]] && [[ "${OS_VERSION}" != "18.04" ]] && [[ "${OS_VERSION}" != "20.04" ]] && [[ "${OS_VERSION}" != "22.04" ]] && [[ "${OS_VERSION}" != "22.10" ]]; then
      echo -e "${red}Sorry, This script is designed for DEBIAN (10, 11), UBUNTU (18.04, 20.04, 22.04, 22.10)${end}"
      exit 1
 fi
 
-## To ensure script run as root
+# To ensure script run as root
 if [ "$EUID" -ne 0 ]; then
      echo "${red}Please run this script as root user${end}"
      exit 1
@@ -60,438 +60,157 @@ echo "**************************************************************************
 echo ""
 
 # Update os
-update_os() {
-     echo "${grn}Starting update os ...${end}"
-     echo ""
-     sleep 3
-     # By default this is set to "interactive" mode which causes the interruption of scripts.
-     if [[ "${OS_VERSION}" == "22.04" ]] || [[ "${OS_VERSION}" == "22.10" ]]; then
-          sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'a'"'"';/' /etc/needrestart/needrestart.conf
-          sudo apt -y remove needrestart
-     fi
+UPDATE_OS=scripts/install/update_os.sh
 
-     apt update
-
-     if [[ "${OS_VERSION}" == "11" ]]; then
-          # Non-interactive apt upgrade
-          sudo DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade
-     else
-          apt upgrade -y
-     fi
-
-     echo ""
-     sleep 1
-}
+if test -f "$UPDATE_OS"; then
+     source $UPDATE_OS
+     cd && cd && cd Lempzy
+else
+     echo "Cannot Update OS"
+     exit
+fi
 
 # Installing UFW Firewall
-install_ufw_firewall() {
-     echo "${grn}Installing UFW Firewall ...${end}"
-     echo ""
-     sleep 3
-     apt install ufw
-     echo ""
-     sleep 1
-}
+INSTALL_UFW_FIREWALL=scripts/install/install_firewall.sh
 
-# Allow openSSH UFW
-allow_openssh_ufw() {
-     echo "${grn}Allow openSSH UFW ...${end}"
-     echo ""
-     sleep 3
-     sudo ufw allow OpenSSH
-     echo ""
-     sleep 1
-}
+if test -f "$INSTALL_UFW_FIREWALL"; then
+     source $INSTALL_UFW_FIREWALL
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install UFW Firewall${end}"
+     exit
+fi
 
-# Enabling UFW
-enabling_ufw() {
-     echo "${grn}Enabling UFW ...${end}"
-     echo ""
-     sleep 3
-     yes | sudo ufw enable
-     echo "y"
-     echo ""
-     sleep 1
-}
+# Install MariaDB
+INSTALL_MARIADB=scripts/install/install_mariadb.sh
 
-# Install MariaDB server
-install_mariadb() {
-     echo "${grn}Installing MariaDB ...${end}"
-     echo ""
-     sleep 3
-     MARIADB_VERSION='10.1'
-     debconf-set-selections <<<"maria-db-$MARIADB_VERSION mysql-server/root_password password $1"
-     debconf-set-selections <<<"maria-db-$MARIADB_VERSION mysql-server/root_password_again password $1"
-     apt-get install -qq mariadb-server
-     echo ""
-     sleep 1
-}
+if test -f "$INSTALL_MARIADB"; then
+     source $INSTALL_MARIADB
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install MariaDB${end}"
+     exit
+fi
 
-# Install PHP
-install_php() {
-     if [[ "${OS_VERSION}" == "10" ]]; then
-          echo "${grn}Installing PHP ...${end}"
-          apt install php7.3-fpm php-mysql -y
-          apt install php7.3-common php7.3-zip php7.3-curl php7.3-xml php7.3-xmlrpc php7.3-json php7.3-mysql php7.3-pdo php7.3-gd php7.3-imagick php7.3-ldap php7.3-imap php7.3-mbstring php7.3-intl php7.3-cli php7.3-recode php7.3-tidy php7.3-bcmath php7.3-opcache -y
-          echo ""
-          sleep 1
+# Install PHP And Configure PHP
+INSTALL_PHP=scripts/install/install_php.sh
 
-     elif [[ "${OS_VERSION}" == "11" ]]; then
-          echo "${grn}Installing PHP ...${end}"
-          echo ""
-          sleep 3
-          apt install php7.4-fpm php-mysql -y
-          apt-get install php7.4 php7.4-common php7.4-gd php7.4-mysql php7.4-imap php7.4-cli php7.4-cgi php-pear mcrypt imagemagick libruby php7.4-curl php7.4-intl php7.4-pspell php7.4-sqlite3 php7.4-tidy php7.4-xmlrpc php7.4-xsl memcached php-memcache php-imagick php7.4-zip php7.4-mbstring memcached php7.4-soap php7.4-fpm php7.4-opcache php-apcu -y
-          echo ""
-          sleep 1
+if test -f "$INSTALL_PHP"; then
+     source $INSTALL_PHP
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install PHP${end}"
+     exit
+fi
 
-     elif [[ "${OS_VERSION}" == "18.04" ]]; then
-          echo "${grn}Installing PHP ...${end}"
-          apt-get install software-properties-common
-          add-apt-repository -y ppa:ondrej/php
-          apt update
-          apt install php7.3-fpm php-mysql -y
-          apt install php7.3-common php7.3-zip php7.3-curl php7.3-xml php7.3-xmlrpc php7.3-json php7.3-mysql php7.3-pdo php7.3-gd php7.3-imagick php7.3-ldap php7.3-imap php7.3-mbstring php7.3-intl php7.3-cli php7.3-recode php7.3-tidy php7.3-bcmath php7.3-opcache -y
-          apt-get purge php8.* -y
-          apt-get autoclean
-          apt-get autoremove -y
-          echo ""
-          sleep 1
+# Install, Start, And Configure nginx
+INSTALL_NGINX=scripts/install/install_nginx.sh
 
-     elif [[ "${OS_VERSION}" == "20.04" ]]; then
-          echo "${grn}Installing PHP ...${end}"
-          echo ""
-          sleep 3
-          apt install php7.4-fpm php-mysql -y
-          apt-get install php7.4 php7.4-common php7.4-gd php7.4-mysql php7.4-imap php7.4-cli php7.4-cgi php-pear mcrypt imagemagick libruby php7.4-curl php7.4-intl php7.4-pspell php7.4-sqlite3 php7.4-tidy php7.4-xmlrpc php7.4-xsl memcached php-memcache php-imagick php7.4-zip php7.4-mbstring memcached php7.4-soap php7.4-fpm php7.4-opcache php-apcu -y
-          echo ""
-          sleep 1
-
-     elif [[ "${OS_VERSION}" == "22.04" ]]; then
-          echo "${grn}Installing PHP ...${end}"
-          echo ""
-          sleep 3
-          apt install php8.1-fpm php-mysql -y
-          apt-get install php8.1 php8.1-common php8.1-gd php8.1-mysql php8.1-imap php8.1-cli php8.1-cgi php-pear mcrypt imagemagick libruby php8.1-curl php8.1-intl php8.1-pspell php8.1-sqlite3 php8.1-tidy php8.1-xmlrpc php8.1-xsl memcached php-memcache php-imagick php8.1-zip php8.1-mbstring memcached php8.1-soap php8.1-fpm php8.1-opcache php-apcu -y
-          echo ""
-          sleep 1
-
-     elif [[ "${OS_VERSION}" == "22.10" ]]; then
-          echo "${grn}Installing PHP ...${end}"
-          echo ""
-          sleep 3
-          apt install php8.1-fpm php-mysql -y
-          apt-get install php8.1 php8.1-common php8.1-gd php8.1-mysql php8.1-imap php8.1-cli php8.1-cgi php-pear mcrypt imagemagick libruby php8.1-curl php8.1-intl php8.1-pspell php8.1-sqlite3 php8.1-tidy php8.1-xmlrpc php8.1-xsl memcached php-memcache php-imagick php8.1-zip php8.1-mbstring memcached php8.1-soap php8.1-fpm php8.1-opcache php-apcu -y
-          echo ""
-          sleep 1
-     else
-          echo -e "${red}Sorry, This script is designed for DEBIAN (10, 11), UBUNTU (18.04, 20.04, 22.04, 22.10)${end}"
-          exit 1
-     fi
-}
-
-# Install and start nginx
-install_nginx() {
-     echo "${grn}Installing NGINX ...${end}"
-     echo ""
-     sleep 3
-     apt-get install nginx -y
-     sudo ufw allow 'Nginx HTTP'
-     systemctl start nginx
-     echo ""
-     sleep 1
-}
-
-# Configure PHP FPM
-configure_php_fpm() {
-     echo "${grn}Configure PHP FPM ...${end}"
-     echo ""
-     sleep 3
-
-     # Get PHP Installed Version
-     PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
-
-     if [[ "${PHP_VERSION}" == "7.2" ]]; then
-          sed -i "s/max_execution_time = 30/max_execution_time = 360/g" /etc/php/7.2/fpm/php.ini
-          sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/7.2/fpm/php.ini
-          sed -i "s/display_errors = .*/display_errors = Off/" /etc/php/7.2/fpm/php.ini
-          sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.2/fpm/php.ini
-          sed -i "s/upload_max_filesize = .*/upload_max_filesize = 256M/" /etc/php/7.2/fpm/php.ini
-          sed -i "s/post_max_size = .*/post_max_size = 256M/" /etc/php/7.2/fpm/php.ini
-          echo ""
-          sleep 1
-
-     elif [[ "${PHP_VERSION}" == "7.3" ]]; then
-          sed -i "s/max_execution_time = 30/max_execution_time = 360/g" /etc/php/7.3/fpm/php.ini
-          sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/7.3/fpm/php.ini
-          sed -i "s/display_errors = .*/display_errors = Off/" /etc/php/7.3/fpm/php.ini
-          sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.3/fpm/php.ini
-          sed -i "s/upload_max_filesize = .*/upload_max_filesize = 256M/" /etc/php/7.3/fpm/php.ini
-          sed -i "s/post_max_size = .*/post_max_size = 256M/" /etc/php/7.3/fpm/php.ini
-          echo ""
-          sleep 1
-
-     elif [[ "${PHP_VERSION}" == "7.4" ]]; then
-          sed -i "s/max_execution_time = 30/max_execution_time = 360/g" /etc/php/7.4/fpm/php.ini
-          sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/7.4/fpm/php.ini
-          sed -i "s/display_errors = .*/display_errors = Off/" /etc/php/7.4/fpm/php.ini
-          sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.4/fpm/php.ini
-          sed -i "s/upload_max_filesize = .*/upload_max_filesize = 256M/" /etc/php/7.4/fpm/php.ini
-          sed -i "s/post_max_size = .*/post_max_size = 256M/" /etc/php/7.4/fpm/php.ini
-          echo ""
-          sleep 1
-
-     elif [[ "${PHP_VERSION}" == "8.1" ]]; then
-          sed -i "s/max_execution_time = 30/max_execution_time = 360/g" /etc/php/8.1/fpm/php.ini
-          sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/8.1/fpm/php.ini
-          sed -i "s/display_errors = .*/display_errors = Off/" /etc/php/8.1/fpm/php.ini
-          sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/8.1/fpm/php.ini
-          sed -i "s/upload_max_filesize = .*/upload_max_filesize = 256M/" /etc/php/8.1/fpm/php.ini
-          sed -i "s/post_max_size = .*/post_max_size = 256M/" /etc/php/8.1/fpm/php.ini
-          echo ""
-          sleep 1
-     else
-          echo -e "${red}Sorry, This script is designed for DEBIAN (10, 11), UBUNTU (18.04, 20.04, 22.04, 22.10)${end}"
-          exit 1
-     fi
-}
+if test -f "$INSTALL_NGINX"; then
+     source $INSTALL_NGINX
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install Nginx${end}"
+     exit
+fi
 
 # Install Memcached
-install_memcached() {
-     echo "${grn}Installing Memcached ...${end}"
-     echo ""
-     sleep 3
-     apt install memcached -y
-     echo ""
-     sleep 1
-     apt install php-memcached -y
-     sleep 1
+INSTALL_MEMCACHED=scripts/install/install_memcached.sh
+if test -f "$INSTALL_MEMCACHED"; then
+     source $INSTALL_MEMCACHED
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install Memcached${end}"
+     exit
+fi
 
-     # Get PHP Installed Version
-     PHP_MAJOR_VERSION=$(php -r "echo PHP_MAJOR_VERSION;")
+# Install Ioncube
+INSTALL_IONCUBE=scripts/install/install_ioncube.sh
 
-     # Get PHP Installed Version
-     PHP_MAJOR_VERSION=$(php -r "echo PHP_MAJOR_VERSION;")
-
-     if [[ "${OS_VERSION}" != "22.04" ]] && [[ "${OS_VERSION}" != "22.10" ]]; then
-          if [[ "${PHP_MAJOR_VERSION}" == "8" ]]; then
-               apt-get purge php8.* -y
-               apt-get autoclean
-               apt-get autoremove -y
-          fi
-     fi
-
-     echo ""
-     sleep 1
-}
-
-# Restart Services
-restart_services() {
-     # Get PHP Installed Version
-     PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
-
-     if [[ "${PHP_VERSION}" == "7.2" ]]; then
-          systemctl restart php7.2-fpm.service
-
-     elif [[ "${PHP_VERSION}" == "7.3" ]]; then
-          systemctl restart php7.3-fpm.service
-
-     elif [[ "${PHP_VERSION}" == "7.4" ]]; then
-          systemctl restart php7.4-fpm.service
-
-     elif [[ "${PHP_VERSION}" == "8.1" ]]; then
-          systemctl restart php8.1-fpm.service
-     else
-          echo -e "${red}Sorry, This script is designed for DEBIAN (10, 11), UBUNTU (18.04, 20.04, 22.04, 22.10)${end}"
-          exit 1
-     fi
-
-     systemctl restart nginx
-}
-
-# Installing IONCUBE
-install_ioncube() {
-     echo "${grn}Installing IONCUBE ...${end}"
-     echo ""
-     sleep 3
-
-     # PHP Modules folder
-     MODULES=$(php -i | grep ^extension_dir | awk '{print $NF}')
-
-     # PHP Version
-     PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
-
-     # Download ioncube
-     wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
-     tar -xvzf ioncube_loaders_lin_x86-64.tar.gz
-     rm -f ioncube_loaders_lin_x86-64.tar.gz
-
-     # Copy files to modules folder
-     sudo cp "ioncube/ioncube_loader_lin_${PHP_VERSION}.so" $MODULES
-
-     if [[ "${PHP_VERSION}" == "7.2" ]]; then
-          # Copy files to modules folder
-          echo "zend_extension=$MODULES/ioncube_loader_lin_${PHP_VERSION}.so" >>/etc/php/7.2/fpm/php.ini
-          echo "zend_extension=$MODULES/ioncube_loader_lin_${PHP_VERSION}.so" >>/etc/php/7.2/cli/php.ini
-
-     elif [[ "${PHP_VERSION}" == "7.3" ]]; then
-          # Copy files to modules folder
-          echo "zend_extension=$MODULES/ioncube_loader_lin_${PHP_VERSION}.so" >>/etc/php/7.3/fpm/php.ini
-          echo "zend_extension=$MODULES/ioncube_loader_lin_${PHP_VERSION}.so" >>/etc/php/7.3/cli/php.ini
-
-     elif [[ "${PHP_VERSION}" == "7.4" ]]; then
-          # Copy files to modules folder
-          echo "zend_extension=$MODULES/ioncube_loader_lin_${PHP_VERSION}.so" >>/etc/php/7.4/fpm/php.ini
-          echo "zend_extension=$MODULES/ioncube_loader_lin_${PHP_VERSION}.so" >>/etc/php/7.4/cli/php.ini
-
-     elif [[ "${PHP_VERSION}" == "8.1" ]]; then
-          # Copy files to modules folder
-          echo "zend_extension=$MODULES/ioncube_loader_lin_${PHP_VERSION}.so" >>/etc/php/8.1/fpm/php.ini
-          echo "zend_extension=$MODULES/ioncube_loader_lin_${PHP_VERSION}.so" >>/etc/php/8.1/cli/php.ini
-     else
-          echo -e "${red}Sorry, This script is designed for DEBIAN (10, 11), UBUNTU (18.04, 20.04, 22.04, 22.10)${end}"
-          exit 1
-     fi
-
-     rm -rf ioncube
-
-     restart_services
-
-     echo ""
-     sleep 1
-}
+if test -f "$INSTALL_IONCUBE"; then
+     source $INSTALL_IONCUBE
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install Ioncube${end}"
+     exit
+fi
 
 # Install Mcrypt
-install_mcrpyt() {
-     echo "${grn}Installing Mcrypt ...${end}"
-     echo ""
-     sleep 3
+INSTALL_MCRPYT=scripts/install/install_mcrpyt.sh
 
-     # PHP Modules folder
-     MODULES=$(php -i | grep ^extension_dir | awk '{print $NF}')
-
-     # Get PHP Installed Version
-     PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
-
-     if [[ "${PHP_VERSION}" == "7.2" ]]; then
-          systemctl restart php7.2-fpm.service
-
-     elif [[ "${PHP_VERSION}" == "7.3" ]]; then
-          apt-get install php7.3-dev -y
-          apt-get -y install gcc make autoconf libc-dev pkg-config
-          apt-get -y install libmcrypt-dev
-          yes | pecl install mcrypt-1.0.3
-          echo "extension=$MODULES/mcrypt.so" >>/etc/php/7.3/fpm/php.ini
-          echo "extension=$MODULES/mcrypt.so" >>/etc/php/7.3/cli/php.ini
-          restart_services
-          echo ""
-          sleep 1
-
-     elif [[ "${PHP_VERSION}" == "7.4" ]]; then
-          apt-get install php-dev libmcrypt-dev php-pear -y
-          pecl channel-update pecl.php.net
-          yes | pecl install channel://pecl.php.net/mcrypt-1.0.4
-          echo "extension=$MODULES/mcrypt.so" >>/etc/php/7.4/fpm/php.ini
-          echo "extension=$MODULES/mcrypt.so" >>/etc/php/7.4/cli/php.ini
-          restart_services
-          echo ""
-          sleep 1
-
-     elif [[ "${PHP_VERSION}" == "8.1" ]]; then
-          apt-get install php-dev libmcrypt-dev php-pear -y
-          pecl channel-update pecl.php.net
-          yes | pecl install channel://pecl.php.net/mcrypt-1.0.5
-          echo "extension=$MODULES/mcrypt.so" >>/etc/php/8.1/fpm/php.ini
-          echo "extension=$MODULES/mcrypt.so" >>/etc/php/8.1/cli/php.ini
-          restart_services
-          echo ""
-          sleep 1
-     else
-          echo -e "${red}Sorry, This script is designed for DEBIAN (10, 11), UBUNTU (18.04, 20.04, 22.04, 22.10)${end}"
-          exit 1
-     fi
-}
+if test -f "$INSTALL_MCRPYT"; then
+     source $INSTALL_MCRPYT
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install Mcrypt${end}"
+     exit
+fi
 
 # Install HTOP
-install_htop() {
-     echo "${grn}Installing HTOP ...${end}"
-     echo ""
-     sleep 3
-     apt-get install htop -y
-     echo ""
-     sleep 1
-}
+INSTALL_HTOP=scripts/install/install_htop.sh
 
-# Install netstat
-install_netstat() {
-     echo "${grn}Installing netstat ...${end}"
-     echo ""
-     sleep 3
-     apt install net-tools -y
-     netstat -ptuln
-     echo ""
-     sleep 1
-}
+if test -f "$INSTALL_HTOP"; then
+     source $INSTALL_HTOP
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install HTOP${end}"
+     exit
+fi
 
-# Install OPENSSL
-install_openssl() {
-     echo "${grn}Installing OPENSSL${end}"
-     echo ""
-     sleep 3
-     cd /etc/ssl/certs/
-     openssl dhparam -dsaparam -out dhparam.pem 4096
-     cd
-     sudo ufw allow 'Nginx Full'
-     sudo ufw delete allow 'Nginx HTTP'
-     echo ""
-     sleep 1
-}
+# Install Netstat
+INSTALL_NETSTAT=scripts/install/install_netstat.sh
+
+if test -f "$INSTALL_NETSTAT"; then
+     source $INSTALL_NETSTAT
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install Netstat${end}"
+     exit
+fi
+
+# Install OpenSSL
+INSTALL_OPENSSL=scripts/install/install_openssl.sh
+
+if test -f "$INSTALL_OPENSSL"; then
+     source $INSTALL_OPENSSL
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install OpenSSL${end}"
+     exit
+fi
 
 # Install AB BENCHMARKING TOOL
-install_ab() {
-     echo "${grn}Installing AB BENCHMARKING TOOL ...${end}"
-     echo ""
-     sleep 3
-     apt-get install apache2-utils -y
-     echo ""
-     sleep 1
-}
+INSTALL_AB=scripts/install/install_openssl.sh
+
+if test -f "$INSTALL_AB"; then
+     source $INSTALL_AB
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install AB BENCHMARKING TOOL${end}"
+     exit
+fi
 
 # Install ZIP AND UNZIP
-install_zips() {
-     echo "${grn}Installing ZIP AND UNZIP ...${end}"
-     echo ""
-     sleep 3
-     apt-get install unzip
-     apt-get install zip
-     echo ""
-     sleep 1
-}
+INSTALL_ZIPS=scripts/install/install_zips.sh
+
+if test -f "$INSTALL_ZIPS"; then
+     source $INSTALL_ZIPS
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install ZIP AND UNZIP${end}"
+     exit
+fi
 
 # Install FFMPEG and IMAGEMAGICK
-install_ffmpeg() {
-     echo "${grn}Installing FFMPEG AND IMAGEMAGICK...${end}"
-     echo ""
-     sleep 3
-     apt-get install imagemagick -y
-     apt-get install ffmpeg -y
-     echo ""
-     sleep 1
-}
+INSTALL_FFMPEG=scripts/install/install_ffmpeg.sh
 
-# Config to make PHP-FPM working with Nginx
-configuring_php_fpm_nginx() {
-     echo "${grn}Configuring to make PHP-FPM working with Nginx ...${end}"
-     echo ""
-     sleep 3
-     rm -rf /etc/nginx/nginx.conf
-     cd /etc/nginx/
-     wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/scripts/nginx.conf -O nginx.conf
-     dos2unix /etc/nginx/nginx.conf
-     cd
-     echo ""
-     sleep 1
-}
+if test -f "$INSTALL_FFMPEG"; then
+     source $INSTALL_FFMPEG
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install ZIP AND UNZIP${end}"
+     exit
+fi
 
 # Change Login Greeting
 change_login_greetings() {
@@ -517,39 +236,15 @@ EOF
     sleep 1
 }
 
-# Run Installations
-cd # Make sure we are in root directory
-update_os
-install_ufw_firewall
-allow_openssh_ufw
-enabling_ufw
-install_mariadb
-install_php
-install_nginx
-configure_php_fpm
-install_memcached
-install_ioncube
-install_mcrpyt
-install_htop
-install_netstat
-install_openssl
-install_ab
-install_zips
-install_ffmpeg
-configuring_php_fpm_nginx
-restart_services
-change_login_greetings
-
-# Menu Script
-cd
-wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/scripts/lempzy.sh -O lempzy.sh
-dos2unix lempzy.sh
-chmod +x lempzy.sh
+# Menu Script Permission Setting
+cp scripts/lempzy.sh /root
+dos2unix /root/lempzy.sh
+chmod +x /root/lempzy.sh
 
 # Success Prompt
 clear
 echo "Lemzpy - LEMP Auto Installer BY Miguel Emmara $(date)"
-echo "*******************************************************************************************"
+echo "******************************************************************************************"
 echo "              *   *    *****    *         ***      ***     *   *    ***** 	"
 echo "              *   *    *        *        *   *    *   *    *   *    *		"
 echo "              *   *    *        *        *        *   *    ** **    *		"
@@ -575,8 +270,7 @@ echo " * * *      *      * ***    *   *    ****     *          *      ****     *
 echo " *   *      *      *   *    *   *    *        *          *      *        *        *   * "
 echo " *   *      *      *   *    *   *    *        *          *      *        *   *    *   * "
 echo " *   *    *****     ***      ***     *****    *****      *      *****     ***     *   * "
-echo "********************* OPEN MENU BY TYPING ${grn}./lempzy.sh${end} ******************************"
+echo "*************** OPEN MENU BY TYPING ${grn}./lempzy.sh${end} IN ROOT DIRECTORY ************************"
 echo ""
 
-rm -f /root/lempzy-setup.sh
 exit

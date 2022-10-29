@@ -71,50 +71,68 @@ until [[ $domain =~ $domainRegex ]]; do
 done
 
 # Check if domain is not there
-FILE=/etc/nginx/sites-available/$domain
-file2=/var/www/$domain
-if [ -f "$FILE" ] || [ -f "$file2" ]; then
-    clear
-else
-    echo ""
-    echo "$domain does not exist, please try again"
-    exit
-fi
+check_if_domain_exist() {
+    FILE=/etc/nginx/sites-available/$domain
+    file2=/var/www/$domain
+    if [ -f "$FILE" ] || [ -f "$file2" ]; then
+        clear
+    else
+        echo ""
+        echo "$domain does not exist, please try again"
+        exit
+    fi
+}
 
 # Install Filerun
-rm -rf /var/www/$domain/*
-cd /var/www/$domain/
-wget -O FileRun.zip http://www.filerun.com/download-latest
-unzip FileRun.zip
-chown -R www-data:www-data /var/www/$domain
-chown -R www-data:www-data /var/www/$domain/system/data
-chown www-data:www-data /var/www/
-chown -R $USER:$USER /var/www/$domain       # JUST TO MAKE SURE
-chown -R www-data:www-data /var/www/$domain # JUST TO MAKE SURE
+install_filerun() {
+    rm -rf /var/www/$domain/*
+    cd /var/www/$domain/
+    wget -O FileRun.zip http://www.filerun.com/download-latest
+    unzip FileRun.zip
+    chown -R www-data:www-data /var/www/$domain
+    chown -R www-data:www-data /var/www/$domain/system/data
+    chown www-data:www-data /var/www/
+    chown -R $USER:$USER /var/www/$domain       # JUST TO MAKE SURE
+    chown -R www-data:www-data /var/www/$domain # JUST TO MAKE SURE
+}
 
 # Change vhost to no fastcgi cache.
-configName=$domain
-cd $sitesAvailable
-wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/scripts/vhost-nocache -O $domain
-sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
+change_vhost() {
+    configName=$domain
+    cd $sitesAvailable
+    cp /root/Lempzy/scripts/vhost-nocache $sitesAvailable$domain
+    sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
+}
 
 # Create NEW Database For Filerun
-domainClear=${domain//./} # Domain name variable
-domainClear2=${domainClear//-/} # Domain name variable 
+create_filerun_database() {
+    domainClear=${domain//./} # Domain name variable
+domainClear2=${domainClear//-/} # Domain name variable
 password_filerun=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1` # Generate random password and save it to password_filerun variable.
+
 mysql -uroot <<MYSQL_SCRIPT
 CREATE DATABASE filerun_db_$domainClear2;
 CREATE USER 'filerun_usr_$domainClear2'@'localhost' IDENTIFIED BY '$password_filerun';
 GRANT ALL PRIVILEGES ON filerun_db_$domainClear2.* TO 'filerun_usr_$domainClear2'@'localhost';
 FLUSH PRIVILEGES;
 MYSQL_SCRIPT
+}
 
 # Restart nginx and php-fpm
-echo "Restart Nginx & PHP-FPM ..."
-echo ""
-sleep 1
-systemctl restart nginx
-systemctl restart php$PHP_VERSION-fpm.service
+restart_service() {
+    echo "Restart Nginx & PHP-FPM ..."
+    echo ""
+    sleep 1
+    systemctl restart nginx
+    systemctl restart php$PHP_VERSION-fpm.service
+}
+
+# Run
+check_if_domain_exist
+install_filerun
+change_vhost
+create_filerun_database
+restart_service
 
 # Success Prompt
 clear
@@ -135,6 +153,3 @@ echo "Database Name: filerun_db_$domainClear2"
 echo "User Name: filerun_usr_$domainClear2"
 echo "Password: $password_filerun"
 echo ""
-
-rm -f /root/filerun.sh
-exit

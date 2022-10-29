@@ -1,10 +1,10 @@
-<p align="center"><a href="[https://miguelemmara.me/](https://github.com/MiguelEmmara-ai/Lempzy)" target="_blank"><img src="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/logo/lemp.jpeg" width="400" alt="Lemp Logo"></a><br>Image Source: Techkylabs</p>
+<p align="center"><a href="[https://miguelemmara.me/](https://github.com/MiguelEmmara-ai/Lempzy)" target="_blank"><img src="https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/logo/lemp.jpeg" width="400" alt="Lemp Logo"></a><br>Image Source: Techkylabs</p>
 
 # Lempzy
 Lempzy is a Simple All In One script to install LEMP Server Stack (Linux eNginx Mysql PHP) with just a single command line.
 
 # Menu
-![Lempzy](https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/screenshots/Lempzy-main-menu.PNG "Main Menu")
+![Lempzy](https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/screenshots/Lempzy-main-menu.PNG "Main Menu")
 
 ## Features
 Lempzy will also optimize the configuration within The LEMP Stack.
@@ -23,7 +23,7 @@ Lempzy will also optimize the configuration within The LEMP Stack.
 ## Installation List
 Here all the list that the script will install
 <br>
-[Full List](https://github.com/MiguelEmmara-ai/Lempzy/blob/v1.0/full-list.txt)
+[Full List](https://github.com/MiguelEmmara-ai/Lempzy/blob/v1.1/full-list.txt)
 
 ## Prerequisites
 What things you need to make sure before proceed.
@@ -35,7 +35,7 @@ What things you need to make sure before proceed.
 To Install Lempzy, all you need to do is to run a single command line and it will install everything.
 
 ```
-apt update; apt-get install dos2unix; wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/lempzy-setup.sh -O ~/lempzy-setup.sh && dos2unix ~/lempzy-setup.sh && bash ~/lempzy-setup.sh
+sudo apt-get install git && apt-get install dos2unix && git clone --branch development https://github.com/MiguelEmmara-ai/Lempzy.git && cd Lempzy && chmod +x lempzy-setup.sh && sudo ./lempzy-setup.sh
 
 ```
 
@@ -44,6 +44,7 @@ Congratulations, you now have installed Lempzy!
 
 Once everything is set up, run this command below in /root directory to open the Menu Options
 ```
+cd
 ./lempzy.sh
 ```
 
@@ -51,7 +52,7 @@ Once everything is set up, run this command below in /root directory to open the
 * **Muhamad Miguel Emmara** - *Lempzy*
 
 ## Current Release
-*Lempzy - V1.0*
+*Lempzy - v1.1*
 
 ## License
 Copyright 2022. Code released under the MIT license.
