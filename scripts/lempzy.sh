@@ -201,7 +201,16 @@ sub_menu1() {
       case $submenudomain in
 
       1)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/domain-menu/domain1.sh -O ~/domain1.sh && dos2unix ~/domain1.sh && bash ~/domain1.sh
+        # ADD DOMAIN
+        DOMAIN1=scripts/domain-menu/domain1.sh
+
+        if test -f "$DOMAIN1"; then
+          source $DOMAIN1
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Add Domain${end}"
+          exit
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
