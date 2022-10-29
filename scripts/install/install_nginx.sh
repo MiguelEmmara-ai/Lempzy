@@ -30,7 +30,7 @@ configuring_php_fpm_nginx() {
      sleep 3
      rm -rf /etc/nginx/nginx.conf
      cd /etc/nginx/
-     wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/scripts/nginx.conf -O nginx.conf
+     cp /root/Lempzy/scripts/nginx.conf nginx.conf
      dos2unix /etc/nginx/nginx.conf
      cd
      echo ""
