@@ -37,10 +37,12 @@ echo -n "${grn}Provide your new port number (choose between 1024-65535) [eg, 585
 read userInput
 
 # Change Port
-echo "Port $userInput" >>/etc/ssh/sshd_config
+sed -i "s/#Port .*/Port $userInput/" /etc/ssh/sshd_config
+sed -i "s/Port .*/Port $userInput/" /etc/ssh/sshd_config
 ufw allow $userInput/tcp
 service ssh restart
 
+# Success Prompt
 clear
 echo "Script By"
 echo ""
