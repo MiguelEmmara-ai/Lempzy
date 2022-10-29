@@ -36,11 +36,22 @@ echo "This feature allow you to change your port ssh. After then, you will login
 echo -n "${grn}Provide your new port number (choose between 1024-65535) [eg, 58532]: ${end}"
 read userInput
 
-# Change Port
-echo "Port $userInput" >> /etc/ssh/sshd_config
-sed -i "s/Port .*/Port $userInput/" /etc/ssh/sshd_config
-ufw allow $userInput/tcp
-service ssh restart
+until [[ $userInput ]] && [ $userInput -eq $userInput ] 2>/dev/null; do
+     echo -n "$userInput is not an integer or not defined, Try again: "
+     read userInput
+done
+
+if [[ $userInput ]] && [ $userInput -eq $userInput ] 2>/dev/null; then
+     # Change Port
+     echo "Port $userInput" >>/etc/ssh/sshd_config
+     sed -i "s/Port .*/Port $userInput/" /etc/ssh/sshd_config
+     ufw allow $userInput/tcp
+     service ssh restart
+
+else
+     echo "$userInput is not an integer or not defined"
+     exit
+fi
 
 # Success Prompt
 clear
