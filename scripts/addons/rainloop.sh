@@ -70,30 +70,41 @@ until [[ $domain =~ $domainRegex ]]; do
 done
 
 # Check if domain is not there
-FILE=/etc/nginx/sites-available/$domain
-file2=/var/www/$domain
-if [ -f "$FILE" ] || [ -f "$file2" ]; then
-    clear
-else
-    echo ""
-    echo "$domain does not exist, please try again"
-    exit
-fi
-
-# Change vhost to no fastcgi cache.
-configName=$domain
-cd $sitesAvailable
-cp /root/Lempzy/scripts/vhost-nocache $sitesAvailable$domain
-sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
+check_if_domain_exist() {
+    FILE=/etc/nginx/sites-available/$domain
+    file2=/var/www/$domain
+    if [ -f "$FILE" ] || [ -f "$file2" ]; then
+        clear
+    else
+        echo ""
+        echo "$domain does not exist, please try again"
+        exit
+    fi
+}
 
 # Intstall RianLoop
-rm -rf /var/www/$domain/*
-cd /var/www/$domain
-wget http://www.rainloop.net/repository/webmail/rainloop-latest.zip
-unzip rainloop-latest.zip
-rm rainloop-latest.zip
-systemctl restart nginx
-chown -R www-data:www-data /var/www/$domain
+install_rainloop() {
+    rm -rf /var/www/$domain/*
+    cd /var/www/$domain
+    wget http://www.rainloop.net/repository/webmail/rainloop-latest.zip
+    unzip rainloop-latest.zip
+    rm rainloop-latest.zip
+    systemctl restart nginx
+    chown -R www-data:www-data /var/www/$domain
+}
+
+# Change vhost to no fastcgi cache.
+change_vhost() {
+    configName=$domain
+    cd $sitesAvailable
+    cp /root/Lempzy/scripts/vhost-nocache $sitesAvailable$domain
+    sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
+}
+
+# Run
+check_if_domain_exist
+install_rainloop
+change_vhost
 
 # Success Prompt
 clear
