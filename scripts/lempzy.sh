@@ -202,14 +202,13 @@ sub_menu1() {
 
       1)
         # ADD DOMAIN
-        DOMAIN1=scripts/domain-menu/domain1.sh
+        DOMAIN1=/root/Lempzy/scripts/domain-menu/domain1.sh
 
         if test -f "$DOMAIN1"; then
           source $DOMAIN1
           cd && cd Lempzy
         else
           echo "${red}Cannot Add Domain${end}"
-          exit
         fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
