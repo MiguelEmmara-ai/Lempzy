@@ -35,7 +35,7 @@ What things you need to make sure before proceed.
 To Install Lempzy, all you need to do is to run a single command line and it will install everything.
 
 ```
-apt update; apt-get install dos2unix; wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/lempzy-setup.sh -O ~/lempzy-setup.sh && dos2unix ~/lempzy-setup.sh && bash ~/lempzy-setup.sh
+sudo apt-get install git && git clone -q https://github.com/MiguelEmmara-ai/Lempzy.git && cd Lempzy && sudo ./lempzy-setup.sh
 
 ```
 
