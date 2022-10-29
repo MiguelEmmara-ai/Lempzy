@@ -70,10 +70,8 @@ else
 fi
 
 # Menu Script
-cd
-wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/lempzy.sh -O lempzy.sh
-dos2unix lempzy.sh
-chmod +x lempzy.sh
+dos2unix scripts/lempzy.sh
+chmod +x scripts/lempzy.sh
 
 # Success Prompt
 clear
@@ -107,5 +105,4 @@ echo " *   *    *****     ***      ***     *****    *****      *      *****     
 echo "********************* OPEN MENU BY TYPING ${grn}./lempzy.sh${end} ******************************"
 echo ""
 
-rm -f /root/lempzy-setup.sh
 exit
