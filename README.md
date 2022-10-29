@@ -4,7 +4,7 @@
 Lempzy is a Simple All In One script to install LEMP Server Stack (Linux eNginx Mysql PHP) with just a single command line.
 
 # Menu
-![Lempzy](https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/screenshots/Lempzy-main-menu.PNG "Main Menu")
+![Lempzy](https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.2/screenshots/Lempzy-main-menu.PNG "Main Menu")
 
 ## Features
 Lempzy will also optimize the configuration within The LEMP Stack.
@@ -23,7 +23,7 @@ Lempzy will also optimize the configuration within The LEMP Stack.
 ## Installation List
 Here all the list that the script will install
 <br>
-[Full List](https://github.com/MiguelEmmara-ai/Lempzy/blob/v1.0/full-list.txt)
+[Full List](https://github.com/MiguelEmmara-ai/Lempzy/blob/v1.2/full-list.txt)
 
 ## Prerequisites
 What things you need to make sure before proceed.
@@ -35,7 +35,7 @@ What things you need to make sure before proceed.
 To Install Lempzy, all you need to do is to run a single command line and it will install everything.
 
 ```
-sudo apt-get install git && apt-get install dos2unix && git clone --branch development https://github.com/MiguelEmmara-ai/Lempzy.git && cd Lempzy && chmod +x lempzy-setup.sh && sudo ./lempzy-setup.sh
+sudo apt-get install git && apt-get install dos2unix && git clone --branch v1.2 https://github.com/MiguelEmmara-ai/Lempzy.git && cd Lempzy && chmod +x lempzy-setup.sh && sudo ./lempzy-setup.sh
 
 ```
 
