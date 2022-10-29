@@ -95,7 +95,7 @@ chown -R www-data:www-data /var/www/$domain # JUST TO MAKE SURE
 # Change vhost to no fastcgi cache.
 configName=$domain
 cd $sitesAvailable
-wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/v1.0/scripts/vhost-nocache -O $domain
+wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/vhost-nocache -O $domain
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
 
 # Create NEW Database For Filerun
