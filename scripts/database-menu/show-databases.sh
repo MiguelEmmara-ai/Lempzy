@@ -23,5 +23,3 @@ show databases;
 MYSQL_SCRIPT
 echo "${end}___________"
 echo ""
-
-rm -f /root/show-databases.sh

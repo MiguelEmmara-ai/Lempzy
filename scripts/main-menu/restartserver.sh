@@ -48,5 +48,3 @@ echo "1${end}"
 sleep 1
 
 shutdown -r now
-
-rm -f /root/restartserver.sh

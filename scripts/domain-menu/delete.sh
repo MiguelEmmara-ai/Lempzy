@@ -121,5 +121,3 @@ echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
 echo "                   /_/          /____/_/"
 echo ""
 echo "Domain $domain has been successfuly deleted along with database and SSL!"
-rm -f /root/delete.sh
-exit

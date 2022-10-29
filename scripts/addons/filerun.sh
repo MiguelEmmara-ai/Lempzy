@@ -135,6 +135,3 @@ echo "Database Name: filerun_db_$domainClear2"
 echo "User Name: filerun_usr_$domainClear2"
 echo "Password: $password_filerun"
 echo ""
-
-rm -f /root/filerun.sh
-exit

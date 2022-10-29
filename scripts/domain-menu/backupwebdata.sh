@@ -100,6 +100,3 @@ echo "${blu}Complete! Your new $domain domain has been backed up!"
 echo "you can download your backup .zip file from below link${end}"
 echo "${grn}$domain/backup-$domainClear2.zip${end}"
 echo ""
-
-rm -f /root/backupwebdata.sh
-exit

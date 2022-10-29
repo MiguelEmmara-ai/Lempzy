@@ -156,8 +156,3 @@ echo ""
 #echo "Database Name: $ninjaDatabase"
 #echo "User Name: $ninjaUser"
 #echo "Password: $ninjaPassword"
-
-#echo ""
-
-rm -f /root/invoiceninja.sh
-exit

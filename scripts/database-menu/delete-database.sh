@@ -100,5 +100,3 @@ echo "                   /_/          /____/_/"
 echo ""
 service nginx reload
 echo "Your database $userdb1 has been successfuly deleted!"
-rm -f /root/delete-database.sh
-exit

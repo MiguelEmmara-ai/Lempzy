@@ -114,6 +114,3 @@ echo ""
 echo "${grn}Login: admin"
 echo "Password: 12345${end}"
 echo ""
-
-rm -f /root/rainloop.sh
-exit
