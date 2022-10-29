@@ -111,7 +111,6 @@ fi
 
 # Install Memcached
 INSTALL_MEMCACHED=scripts/install/install_memcached.sh
-
 if test -f "$INSTALL_MEMCACHED"; then
      source $INSTALL_MEMCACHED
 else

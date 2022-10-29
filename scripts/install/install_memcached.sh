@@ -25,8 +25,8 @@ install_memcached() {
      # Get PHP Installed Version
      PHP_MAJOR_VERSION=$(php -r "echo PHP_MAJOR_VERSION;")
 
-     # Get PHP Installed Version
-     PHP_MAJOR_VERSION=$(php -r "echo PHP_MAJOR_VERSION;")
+     # Get OS Version
+     OS_VERSION=$(lsb_release -rs)
 
      if [[ "${OS_VERSION}" != "22.04" ]] && [[ "${OS_VERSION}" != "22.10" ]]; then
           if [[ "${PHP_MAJOR_VERSION}" == "8" ]]; then
