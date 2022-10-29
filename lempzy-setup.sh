@@ -102,7 +102,7 @@ echo " * * *      *      * ***    *   *    ****     *          *      ****     *
 echo " *   *      *      *   *    *   *    *        *          *      *        *        *   * "
 echo " *   *      *      *   *    *   *    *        *          *      *        *   *    *   * "
 echo " *   *    *****     ***      ***     *****    *****      *      *****     ***     *   * "
-echo "********************* OPEN MENU BY TYPING ${grn}./lempzy.sh${end} ******************************"
+echo "********************* OPEN MENU BY TYPING ${grn}./lempzy.sh${end} IN ROOT DIRECTORY ******************************"
 echo ""
 
 exit
