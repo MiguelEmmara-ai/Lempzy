@@ -75,13 +75,29 @@ main_menu() {
         ;;
 
       3)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/main-menu/showdomain.sh -O ~/showdomain.sh && dos2unix ~/showdomain.sh && bash ~/showdomain.sh
+        # Show Domain
+        SHOW_DOMAIN=/root/Lempzy/scripts/domain-menu/showdomain.sh
+
+        if test -f "$SHOW_DOMAIN"; then
+          source $SHOW_DOMAIN
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot View Domains${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
 
       4)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/database-menu/show-databases.sh -O ~/show-databases.sh && dos2unix ~/show-databases.sh && bash ~/show-databases.sh
+        # Show Databases
+        SHOW_DATABASES=/root/Lempzy/scripts/database-menu/show-databases.sh
+
+        if test -f "$SHOW_DATABASES"; then
+          source $SHOW_DATABASES
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot View Databases${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
         ;;
@@ -215,25 +231,57 @@ sub_menu1() {
         ;;
 
       2)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/domain-menu/domain2.sh -O ~/domain2.sh && dos2unix ~/domain2.sh && bash ~/domain2.sh
+        # ADD DOMAIN
+        DOMAIN2=/root/Lempzy/scripts/domain-menu/domain2.sh
+
+        if test -f "$DOMAIN2"; then
+          source $DOMAIN2
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Add Domain${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
 
       3)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/domain-menu/domain3.sh -O ~/domain3.sh && dos2unix ~/domain3.sh && bash ~/domain3.sh
+        # ADD DOMAIN
+        DOMAIN3=/root/Lempzy/scripts/domain-menu/domain3.sh
+
+        if test -f "$DOMAIN3"; then
+          source $DOMAIN3
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Add Domain${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
 
       4)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/domain-menu/domain4.sh -O ~/domain4.sh && dos2unix ~/domain4.sh && bash ~/domain4.sh
+        # ADD DOMAIN
+        DOMAIN4=/root/Lempzy/scripts/domain-menu/domain4.sh
+
+        if test -f "$DOMAIN4"; then
+          source $DOMAIN4
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Add Domain${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
 
       5)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/main-menu/showdomain.sh -O ~/showdomain.sh && dos2unix ~/showdomain.sh && bash ~/showdomain.sh
+        # Show Domain
+        SHOW_DOMAIN=/root/Lempzy/scripts/domain-menu/showdomain.sh
+
+        if test -f "$SHOW_DOMAIN"; then
+          source $SHOW_DOMAIN
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot View Domains${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu1
         ;;
@@ -324,7 +372,15 @@ sub_menu2() {
         ;;
 
       3)
-        wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/database-menu/show-databases.sh -O ~/show-databases.sh && dos2unix ~/show-databases.sh && bash ~/show-databases.sh
+        # Show Databases
+        SHOW_DATABASES=/root/Lempzy/scripts/database-menu/show-databases.sh
+
+        if test -f "$SHOW_DATABASES"; then
+          source $SHOW_DATABASES
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot View Databases${end}"
+        fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu2
         ;;
