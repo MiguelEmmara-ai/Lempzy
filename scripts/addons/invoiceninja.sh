@@ -99,7 +99,7 @@ yes | sudo php /usr/local/bin/composer install --no-dev
 # Change vhost to no fastcgi cache made for InvoiceNinja
 configName=$domain
 cd $sitesAvailable
-wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/vhost-nocache -O $domain
+cp /root/Lempzy/scripts/vhost-nocache $sitesAvailable$domain
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
 # Create NEW Database For Invoice Ninja
 #domainClear=${domain//./} # Domain name variable

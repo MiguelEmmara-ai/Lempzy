@@ -83,7 +83,7 @@ fi
 # Change vhost to no fastcgi cache.
 configName=$domain
 cd $sitesAvailable
-wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/vhost-nocache -O $domain
+cp /root/Lempzy/scripts/vhost-nocache $sitesAvailable$domain
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
 
 # Intstall RianLoop
