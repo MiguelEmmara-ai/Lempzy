@@ -64,6 +64,7 @@ UPDATE_OS=scripts/install/update_os.sh
 
 if test -f "$UPDATE_OS"; then
      source $UPDATE_OS
+     cd Lempzy
 else
      echo "Cannot Update OS"
      exit
@@ -74,6 +75,7 @@ INSTALL_UFW_FIREWALL=scripts/install/install_firewall.sh
 
 if test -f "$INSTALL_UFW_FIREWALL"; then
      source $INSTALL_UFW_FIREWALL
+     cd Lempzy
 else
      echo "${red}Cannot Install UFW Firewall${end}"
      exit
@@ -84,6 +86,7 @@ INSTALL_MARIADB=scripts/install/install_mariadb.sh
 
 if test -f "$INSTALL_MARIADB"; then
      source $INSTALL_MARIADB
+     cd Lempzy
 else
      echo "${red}Cannot Install MariaDB${end}"
      exit
@@ -94,6 +97,7 @@ INSTALL_PHP=scripts/install/install_php.sh
 
 if test -f "$INSTALL_PHP"; then
      source $INSTALL_PHP
+     cd Lempzy
 else
      echo "${red}Cannot Install PHP${end}"
      exit
@@ -104,6 +108,7 @@ INSTALL_NGINX=scripts/install/install_nginx.sh
 
 if test -f "$INSTALL_NGINX"; then
      source $INSTALL_NGINX
+     cd Lempzy
 else
      echo "${red}Cannot Install Nginx${end}"
      exit
@@ -113,6 +118,7 @@ fi
 INSTALL_MEMCACHED=scripts/install/install_memcached.sh
 if test -f "$INSTALL_MEMCACHED"; then
      source $INSTALL_MEMCACHED
+     cd Lempzy
 else
      echo "${red}Cannot Install Memcached${end}"
      exit
@@ -123,6 +129,7 @@ INSTALL_IONCUBE=scripts/install/install_ioncube.sh
 
 if test -f "$INSTALL_IONCUBE"; then
      source $INSTALL_IONCUBE
+     cd Lempzy
 else
      echo "${red}Cannot Install Ioncube${end}"
      exit
@@ -133,6 +140,7 @@ INSTALL_MCRPYT=scripts/install/install_mcrpyt.sh
 
 if test -f "$INSTALL_MCRPYT"; then
      source $INSTALL_MCRPYT
+     cd Lempzy
 else
      echo "${red}Cannot Install Mcrypt${end}"
      exit
@@ -143,6 +151,7 @@ INSTALL_HTOP=scripts/install/install_htop.sh
 
 if test -f "$INSTALL_HTOP"; then
      source $INSTALL_HTOP
+     cd Lempzy
 else
      echo "${red}Cannot Install HTOP${end}"
      exit
@@ -153,6 +162,7 @@ INSTALL_NETSTAT=scripts/install/install_netstat.sh
 
 if test -f "$INSTALL_NETSTAT"; then
      source $INSTALL_NETSTAT
+     cd Lempzy
 else
      echo "${red}Cannot Install Netstat${end}"
      exit
@@ -163,6 +173,7 @@ INSTALL_OPENSSL=scripts/install/install_openssl.sh
 
 if test -f "$INSTALL_OPENSSL"; then
      source $INSTALL_OPENSSL
+     cd Lempzy
 else
      echo "${red}Cannot Install OpenSSL${end}"
      exit
@@ -173,6 +184,7 @@ INSTALL_AB=scripts/install/install_openssl.sh
 
 if test -f "$INSTALL_AB"; then
      source $INSTALL_AB
+     cd Lempzy
 else
      echo "${red}Cannot Install AB BENCHMARKING TOOL${end}"
      exit
@@ -183,6 +195,7 @@ INSTALL_ZIPS=scripts/install/install_zips.sh
 
 if test -f "$INSTALL_ZIPS"; then
      source $INSTALL_ZIPS
+     cd Lempzy
 else
      echo "${red}Cannot Install ZIP AND UNZIP${end}"
      exit
@@ -193,6 +206,7 @@ INSTALL_FFMPEG=scripts/install/install_ffmpeg.sh
 
 if test -f "$INSTALL_FFMPEG"; then
      source $INSTALL_FFMPEG
+     cd Lempzy
 else
      echo "${red}Cannot Install ZIP AND UNZIP${end}"
      exit
