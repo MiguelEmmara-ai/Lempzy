@@ -118,8 +118,7 @@ mkdir -p /etc/nginx/mycache/$domain
 # Add nginx Vhost FastCGI for domain
 configName=$domain
 cd $sitesAvailable
-# wget https://raw.githubusercontent.com/MiguelEmmara-ai/Lempzy/development/scripts/vhost-fastcgi -O $domain
-mv /root/Lempzy/scripts/vhost-fastcgi $domain
+cp /root/Lempzy/scripts/vhost-fastcgi $sitesAvailable$domain
 sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
 sed -i "s/phpX.X/php$PHP_VERSION/g" $sitesAvailable$configName
 
@@ -161,5 +160,5 @@ echo "Database:   database_$domainClear2"
 echo "Username:   user_$domainClear2"
 echo "Password:   $PASS"
 echo ""
-rm -f /root/domain1.sh
+cd && cd Lempzy
 exit
