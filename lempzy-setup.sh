@@ -76,7 +76,7 @@ chmod +x scripts/lempzy.sh
 # Success Prompt
 clear
 echo "Lemzpy - LEMP Auto Installer BY Miguel Emmara $(date)"
-echo "*******************************************************************************************"
+echo "******************************************************************************************"
 echo "              *   *    *****    *         ***      ***     *   *    ***** 	"
 echo "              *   *    *        *        *   *    *   *    *   *    *		"
 echo "              *   *    *        *        *        *   *    ** **    *		"
@@ -102,7 +102,7 @@ echo " * * *      *      * ***    *   *    ****     *          *      ****     *
 echo " *   *      *      *   *    *   *    *        *          *      *        *        *   * "
 echo " *   *      *      *   *    *   *    *        *          *      *        *   *    *   * "
 echo " *   *    *****     ***      ***     *****    *****      *      *****     ***     *   * "
-echo "********************* OPEN MENU BY TYPING ${grn}./lempzy.sh${end} IN ROOT DIRECTORY ******************************"
+echo "********* OPEN MENU BY TYPING ${grn}./lempzy.sh${end} IN ROOT DIRECTORY ******************"
 echo ""
 
 exit
