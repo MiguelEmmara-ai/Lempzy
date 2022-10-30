@@ -102,6 +102,7 @@ change_vhost() {
     cd $sitesAvailable
     cp /root/Lempzy/scripts/vhost-nocache $sitesAvailable$domain
     sed -i "s/domain.com/$domain/g" $sitesAvailable$configName
+    sed -i "s/phpX.X/php$PHP_VERSION/g" $sitesAvailable$configName
 }
 
 # Create NEW Database For Filerun
