@@ -75,7 +75,7 @@ check_if_domain_exist() {
      FILE=/etc/nginx/sites-available/$domain
      file2=/var/www/$domain
      if [ -f "$FILE" ] || [ -f "$file2" ]; then
-          clear
+          echo ""
      else
           echo ""
           echo "$domain does not exist, please try again"
@@ -137,7 +137,7 @@ install_laravel() {
           read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
      done
 
-     composer create-project laravel/laravel $appname2
+     composer create-project laravel/laravel $appname2 --no-interaction
      cd $appname2
 
      sed -i "s/APP_URL=.*/APP_URL=https:\\/\\/$domain/g" .env
