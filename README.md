@@ -23,7 +23,7 @@ Lempzy will also optimize the configuration within The LEMP Stack.
 ## Installation List
 Here all the list that the script will install
 <br>
-[Full List](https://github.com/MiguelEmmara-ai/Lempzy/blob/v1.0/full-list.txt)
+[Full List](https://github.com/MiguelEmmara-ai/Lempzy/blob/v1.2/full-list.txt)
 
 ## Prerequisites
 What things you need to make sure before proceed.
