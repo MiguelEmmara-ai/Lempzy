@@ -45,13 +45,14 @@ main_menu() {
   echo "  ${grn}1) DOMAIN MENU >"
   echo "  2) DATABASE MENU >"
   echo "  3) ADD-ONS APPS INSTALLER MENU >"
-  echo "  4) SHOW CURRENT DOMAIN"
-  echo "  5) SHOW CURRENT DATABASE"
-  echo "  6) CHANGE PORT SSH"
-  echo "  7) REFRESH SERVER"
-  echo "  8) CLEAR CACHE RAM"
-  echo "  9) ${red}RESTART SERVER${end}"
-  echo "  ${grn}10) EXIT MENU${end}"
+  echo "  4) INSTALL PHP FRAMEWORKS >"
+  echo "  5) SHOW CURRENT DOMAIN"
+  echo "  6) SHOW CURRENT DATABASE"
+  echo "  7) CHANGE PORT SSH"
+  echo "  8) REFRESH SERVER"
+  echo "  9) CLEAR CACHE RAM"
+  echo "  10) ${red}RESTART SERVER${end}"
+  echo "  ${grn}11) EXIT MENU${end}"
   echo ""
   read -p "Choose your option [1-10]: " choice
 
@@ -79,6 +80,12 @@ main_menu() {
         ;;
 
       4)
+        clear
+        # option_picked "Sub Menu 4";
+        sub_menu4
+        ;;
+
+      5)
         # Show Domain
         SHOW_DOMAIN=/root/Lempzy/scripts/domain-menu/showdomain.sh
 
@@ -92,7 +99,7 @@ main_menu() {
         main_menu
         ;;
 
-      5)
+      6)
         # Show Databases
         SHOW_DATABASES=/root/Lempzy/scripts/database-menu/show-databases.sh
 
@@ -106,7 +113,7 @@ main_menu() {
         main_menu
         ;;
 
-      6)
+      7)
         # Change Port SSHD
         CHANGE_PORT_SSHD=/root/Lempzy/scripts/main-menu/changeportsshd.sh
 
@@ -120,7 +127,7 @@ main_menu() {
         main_menu
         ;;
 
-      7)
+      8)
         clear
         systemctl restart php$PHP_VERSION-fpm.service
         systemctl restart nginx
@@ -129,7 +136,7 @@ main_menu() {
         main_menu
         ;;
 
-      8)
+      9)
         clear
         echo 3 >/proc/sys/vm/drop_caches
         echo "${cyn}RAM CACHE CLEARED!${end}"
@@ -137,7 +144,7 @@ main_menu() {
         main_menu
         ;;
 
-      9)
+      10)
         # Restart Server
         RESTART_SERVER=/root/Lempzy/scripts/main-menu/restartserver.sh
 
@@ -151,7 +158,7 @@ main_menu() {
         main_menu
         ;;
 
-      10)
+      11)
         clear
         echo "Bye!"
         echo "You can open the Main Menu by typing ${grn}./lempzy.sh${end}"
