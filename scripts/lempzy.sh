@@ -563,7 +563,7 @@ sub_menu4() {
       case $sub_menu4 in
 
       1)
-        # Install laravel
+        # Install Laravel
         LARAVEL=/root/Lempzy/scripts/addons/php-frameworks/laravel.sh
 
         if test -f "$LARAVEL"; then
@@ -577,14 +577,14 @@ sub_menu4() {
         ;;
 
       2)
-        # Install laravel
-        LARAVEL=/root/Lempzy/scripts/addons/php-frameworks/laravel.sh
+        # Install Codeigniter
+        CODEIGNITER=/root/Lempzy/scripts/addons/php-frameworks/codeigniter.sh
 
-        if test -f "$LARAVEL"; then
-          source $LARAVEL
+        if test -f "$CODEIGNITER"; then
+          source $CODEIGNITER
           cd && cd Lempzy
         else
-          echo "${red}Cannot Install LARAVEL${end}"
+          echo "${red}Cannot Install CODEIGNITER${end}"
         fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
