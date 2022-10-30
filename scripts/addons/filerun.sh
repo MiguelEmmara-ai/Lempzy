@@ -108,14 +108,14 @@ change_vhost() {
 # Create NEW Database For Filerun
 create_filerun_database() {
     domainClear=${domain//./} # Domain name variable
-domainClear2=${domainClear//-/} # Domain name variable
-password_filerun=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1` # Generate random password and save it to password_filerun variable.
+    domainClear2=${domainClear//-/} # Domain name variable
+    password_filerun=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1` # Generate random password and save it to password_filerun variable.
 
-mysql -uroot <<MYSQL_SCRIPT
-CREATE DATABASE filerun_db_$domainClear2;
-CREATE USER 'filerun_usr_$domainClear2'@'localhost' IDENTIFIED BY '$password_filerun';
-GRANT ALL PRIVILEGES ON filerun_db_$domainClear2.* TO 'filerun_usr_$domainClear2'@'localhost';
-FLUSH PRIVILEGES;
+    mysql -uroot <<MYSQL_SCRIPT
+    CREATE DATABASE filerun_db_$domainClear2;
+    CREATE USER 'filerun_usr_$domainClear2'@'localhost' IDENTIFIED BY '$password_filerun';
+    GRANT ALL PRIVILEGES ON filerun_db_$domainClear2.* TO 'filerun_usr_$domainClear2'@'localhost';
+    FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 }
 

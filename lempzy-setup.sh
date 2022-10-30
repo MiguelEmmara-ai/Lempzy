@@ -19,6 +19,9 @@
 # AB BENCHMARKING TOOL
 # ZIP AND UNZIP
 # FFMPEG AND IMAGEMAGICK
+# CURL
+# GIT
+# COMPOSER
 #--------------------------------------------------
 
 set -e
@@ -209,6 +212,28 @@ if test -f "$INSTALL_FFMPEG"; then
      cd && cd Lempzy
 else
      echo "${red}Cannot Install ZIP AND UNZIP${end}"
+     exit
+fi
+
+# Install Git And Curl
+INSTALL_GIT=scripts/install/install_git.sh
+
+if test -f "$INSTALL_GIT"; then
+     source $INSTALL_GIT
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install Git And Curl${end}"
+     exit
+fi
+
+# Install Composer
+INSTALL_COMPOSER=scripts/install/install_composer.sh
+
+if test -f "$INSTALL_COMPOSER"; then
+     source $INSTALL_COMPOSER
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install Composer${end}"
      exit
 fi
 

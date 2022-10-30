@@ -78,7 +78,6 @@ main_menu() {
         sub_menu3
         ;;
 
-
       4)
         # Show Domain
         SHOW_DOMAIN=/root/Lempzy/scripts/domain-menu/showdomain.sh
@@ -492,7 +491,7 @@ sub_menu3() {
         fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
-        ;; 
+        ;;
 
       4)
         clear
@@ -510,6 +509,124 @@ sub_menu3() {
         echo "Error: Invalid option..."
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu3
+        ;;
+      esac
+    fi
+  done
+}
+
+sub_menu4() {
+  NORMAL=$(echo "\033[m")
+  MENU=$(echo "\033[36m")   #Blue
+  NUMBER=$(echo "\033[33m") #yellow
+  FGRED=$(echo "\033[41m")
+  RED_TEXT=$(echo "\033[31m")
+  ENTER_LINE=$(echo "\033[33m")
+
+  clear
+  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.0"
+  echo "-------------------------------------------------------------------------"
+  echo "ADD-ONS APPS INSTALLER - M E N U"
+  echo "Script By"
+  echo ""
+  echo ""
+  echo "     __                                    "
+  echo "    / /   ___  ____ ___  ____  ____  __  __"
+  echo "   / /   / _ \/ __ \`__ \/ __ \/_  / / / / /"
+  echo "  / /___/  __/ / / / / / /_/ / / /_/ /_/ /"
+  echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
+  echo "                   /_/          /____/_/"
+  echo ""
+  echo "-------------------------------------------------------------------------"
+  echo "Choose Your Options"
+  echo ""
+  echo "  ${grn}1) INSTALL LARAVEL"
+  echo "  2) INSTALL SYMFONY"
+  echo "  3) INSTALL CODEIGNITER"
+  echo "  4) INSTALL CAKEPHP"
+  echo "  5) BACK TO MAIN MENU <"
+  echo "  6) EXIT MENU${end}"
+  echo ""
+  read -p "Choose your option [1-6]: " sub_menu4
+
+  while [ sub_menu4 != '' ]; do
+    if [[ $sub_menu4 = "" ]]; then
+      exit
+    else
+      case $sub_menu4 in
+
+      1)
+        # Install laravel
+        LARAVEL=/root/Lempzy/scripts/addons/php-frameworks/laravel.sh
+
+        if test -f "$LARAVEL"; then
+          source $LARAVEL
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Install LARAVEL${end}"
+        fi
+        read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
+        main_menu
+        ;;
+
+      2)
+        # Install laravel
+        LARAVEL=/root/Lempzy/scripts/addons/php-frameworks/laravel.sh
+
+        if test -f "$LARAVEL"; then
+          source $LARAVEL
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Install LARAVEL${end}"
+        fi
+        read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
+        main_menu
+        ;;
+
+      3)
+        # Install laravel
+        LARAVEL=/root/Lempzy/scripts/addons/php-frameworks/laravel.sh
+
+        if test -f "$LARAVEL"; then
+          source $LARAVEL
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Install LARAVEL${end}"
+        fi
+        read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
+        main_menu
+        ;;
+
+      4)
+        # Install laravel
+        LARAVEL=/root/Lempzy/scripts/addons/php-frameworks/laravel.sh
+
+        if test -f "$LARAVEL"; then
+          source $LARAVEL
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Install LARAVEL${end}"
+        fi
+        read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
+        main_menu
+        ;;
+
+      5)
+        clear
+        main_menu
+        ;;
+
+      6)
+        clear
+        echo "Bye!"
+        echo "You can open the Main Menu by typing ${grn}./lempzy.sh${end}"
+        exit
+        ;;
+
+      *)
+        echo "Error: Invalid option..."
+        read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
+        sub_menu4
         ;;
       esac
     fi
