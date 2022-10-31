@@ -243,7 +243,7 @@ change_login_greetings() {
     echo ""
     sleep 3
 
-cd
+cd ~
 cat > .bashrc << EOF
 echo "########################### SERVER CONFIGURED BY LEMPZY ###########################"
 echo " ######################## FULL INSTRUCTIONS GO TO MIGUELEMMARA.ME ####################### "
@@ -262,6 +262,8 @@ EOF
     cd && cd Lempzy
     sleep 1
 }
+
+change_login_greetings
 
 # Menu Script Permission Setting
 cp scripts/lempzy.sh /root
