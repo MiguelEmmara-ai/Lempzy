@@ -27,7 +27,7 @@ main_menu() {
 
   clear
   # display menu
-  echo "Server Name - ${grn}$(hostname)${end} - Lempzy v1.2"
+  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.3"
   echo "-------------------------------------------------------------------------"
   echo "M A I N - M E N U"
   echo "Script By"
@@ -45,13 +45,14 @@ main_menu() {
   echo "  ${grn}1) DOMAIN MENU >"
   echo "  2) DATABASE MENU >"
   echo "  3) ADD-ONS APPS INSTALLER MENU >"
-  echo "  4) SHOW CURRENT DOMAIN"
-  echo "  5) SHOW CURRENT DATABASE"
-  echo "  6) CHANGE PORT SSH"
-  echo "  7) REFRESH SERVER"
-  echo "  8) CLEAR CACHE RAM"
-  echo "  9) ${red}RESTART SERVER${end}"
-  echo "  ${grn}10) EXIT MENU${end}"
+  echo "  4) INSTALL PHP FRAMEWORKS >"
+  echo "  5) SHOW CURRENT DOMAIN"
+  echo "  6) SHOW CURRENT DATABASE"
+  echo "  7) CHANGE PORT SSH"
+  echo "  8) REFRESH SERVER"
+  echo "  9) CLEAR CACHE RAM"
+  echo "  10) ${red}RESTART SERVER${end}"
+  echo "  ${grn}11) EXIT MENU${end}"
   echo ""
   read -p "Choose your option [1-10]: " choice
 
@@ -78,8 +79,13 @@ main_menu() {
         sub_menu3
         ;;
 
-
       4)
+        clear
+        # option_picked "Sub Menu 4";
+        sub_menu4
+        ;;
+
+      5)
         # Show Domain
         SHOW_DOMAIN=/root/Lempzy/scripts/domain-menu/showdomain.sh
 
@@ -93,7 +99,7 @@ main_menu() {
         main_menu
         ;;
 
-      5)
+      6)
         # Show Databases
         SHOW_DATABASES=/root/Lempzy/scripts/database-menu/show-databases.sh
 
@@ -107,7 +113,7 @@ main_menu() {
         main_menu
         ;;
 
-      6)
+      7)
         # Change Port SSHD
         CHANGE_PORT_SSHD=/root/Lempzy/scripts/main-menu/changeportsshd.sh
 
@@ -121,7 +127,7 @@ main_menu() {
         main_menu
         ;;
 
-      7)
+      8)
         clear
         systemctl restart php$PHP_VERSION-fpm.service
         systemctl restart nginx
@@ -130,7 +136,7 @@ main_menu() {
         main_menu
         ;;
 
-      8)
+      9)
         clear
         echo 3 >/proc/sys/vm/drop_caches
         echo "${cyn}RAM CACHE CLEARED!${end}"
@@ -138,7 +144,7 @@ main_menu() {
         main_menu
         ;;
 
-      9)
+      10)
         # Restart Server
         RESTART_SERVER=/root/Lempzy/scripts/main-menu/restartserver.sh
 
@@ -152,7 +158,7 @@ main_menu() {
         main_menu
         ;;
 
-      10)
+      11)
         clear
         echo "Bye!"
         echo "You can open the Main Menu by typing ${grn}./lempzy.sh${end}"
@@ -185,7 +191,7 @@ sub_menu1() {
   ENTER_LINE=$(echo "\033[33m")
 
   clear
-  echo "Server Name - ${grn}$(hostname)${end} - Lempzy v1.2"
+  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.3"
   echo "-------------------------------------------------------------------------"
   echo "D O M A I N - M E N U"
   echo "Script By"
@@ -318,7 +324,7 @@ sub_menu2() {
   ENTER_LINE=$(echo "\033[33m")
 
   clear
-  echo "Server Name - ${grn}$(hostname)${end} - Lempzy v1.2"
+  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.3"
   echo "-------------------------------------------------------------------------"
   echo "D A T A B A S E - M E N U"
   echo "Script By"
@@ -422,7 +428,7 @@ sub_menu3() {
   ENTER_LINE=$(echo "\033[33m")
 
   clear
-  echo "Server Name - ${grn}$(hostname)${end} - Lempzy v1.2"
+  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.3"
   echo "-------------------------------------------------------------------------"
   echo "ADD-ONS APPS INSTALLER - M E N U"
   echo "Script By"
@@ -492,7 +498,7 @@ sub_menu3() {
         fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
-        ;; 
+        ;;
 
       4)
         clear
@@ -510,6 +516,124 @@ sub_menu3() {
         echo "Error: Invalid option..."
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         sub_menu3
+        ;;
+      esac
+    fi
+  done
+}
+
+sub_menu4() {
+  NORMAL=$(echo "\033[m")
+  MENU=$(echo "\033[36m")   #Blue
+  NUMBER=$(echo "\033[33m") #yellow
+  FGRED=$(echo "\033[41m")
+  RED_TEXT=$(echo "\033[31m")
+  ENTER_LINE=$(echo "\033[33m")
+
+  clear
+  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.3"
+  echo "-------------------------------------------------------------------------"
+  echo "PHP FRAMEWORKS INSTALLER - M E N U"
+  echo "Script By"
+  echo ""
+  echo ""
+  echo "     __                                    "
+  echo "    / /   ___  ____ ___  ____  ____  __  __"
+  echo "   / /   / _ \/ __ \`__ \/ __ \/_  / / / / /"
+  echo "  / /___/  __/ / / / / / /_/ / / /_/ /_/ /"
+  echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
+  echo "                   /_/          /____/_/"
+  echo ""
+  echo "-------------------------------------------------------------------------"
+  echo "Choose Your Options"
+  echo ""
+  echo "  ${grn}1) INSTALL LARAVEL"
+  echo "  2) INSTALL CODEIGNITER"
+  echo "  3) INSTALL CAKEPHP"
+  echo "  4) INSTALL SYMFONY"
+  echo "  5) BACK TO MAIN MENU <"
+  echo "  6) EXIT MENU${end}"
+  echo ""
+  read -p "Choose your option [1-6]: " sub_menu4
+
+  while [ sub_menu4 != '' ]; do
+    if [[ $sub_menu4 = "" ]]; then
+      exit
+    else
+      case $sub_menu4 in
+
+      1)
+        # Install Laravel
+        LARAVEL=/root/Lempzy/scripts/addons/php-frameworks/laravel.sh
+
+        if test -f "$LARAVEL"; then
+          source $LARAVEL
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Install LARAVEL${end}"
+        fi
+        read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
+        main_menu
+        ;;
+
+      2)
+        # Install Codeigniter
+        CODEIGNITER=/root/Lempzy/scripts/addons/php-frameworks/codeigniter.sh
+
+        if test -f "$CODEIGNITER"; then
+          source $CODEIGNITER
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Install CODEIGNITER${end}"
+        fi
+        read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
+        main_menu
+        ;;
+
+      3)
+        # Install CakePHP
+        CAKEPHP=/root/Lempzy/scripts/addons/php-frameworks/cakephp.sh
+
+        if test -f "$CAKEPHP"; then
+          source $CAKEPHP
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Install CAKEPHP${end}"
+        fi
+        read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
+        main_menu
+        ;;
+
+      4)
+        # Install Symfony
+        SYMFONY=/root/Lempzy/scripts/addons/php-frameworks/symfony.sh
+
+        if test -f "$SYMFONY"; then
+          source $SYMFONY
+          cd && cd Lempzy
+        else
+          echo "${red}Cannot Install SYMFONY${end}"
+        fi
+        read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
+        main_menu
+        ;;
+
+      5)
+        clear
+        main_menu
+        ;;
+
+      6)
+        clear
+        echo "Bye!"
+        echo "You can open the Main Menu by typing ${grn}./lempzy.sh${end}"
+        exit
+        ;;
+
+      *)
+        echo "Error: Invalid option..."
+        read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
+        sub_menu4
         ;;
       esac
     fi
