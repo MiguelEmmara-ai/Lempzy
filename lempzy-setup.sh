@@ -183,7 +183,7 @@ else
 fi
 
 # Install AB BENCHMARKING TOOL
-INSTALL_AB=scripts/install/install_openssl.sh
+INSTALL_AB=scripts/install/install_ab.sh
 
 if test -f "$INSTALL_AB"; then
      source $INSTALL_AB
