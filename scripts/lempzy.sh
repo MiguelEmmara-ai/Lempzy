@@ -27,7 +27,7 @@ main_menu() {
 
   clear
   # display menu
-  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.2"
+  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.3"
   echo "-------------------------------------------------------------------------"
   echo "M A I N - M E N U"
   echo "Script By"
@@ -191,7 +191,7 @@ sub_menu1() {
   ENTER_LINE=$(echo "\033[33m")
 
   clear
-  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.2"
+  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.3"
   echo "-------------------------------------------------------------------------"
   echo "D O M A I N - M E N U"
   echo "Script By"
@@ -324,7 +324,7 @@ sub_menu2() {
   ENTER_LINE=$(echo "\033[33m")
 
   clear
-  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.2"
+  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.3"
   echo "-------------------------------------------------------------------------"
   echo "D A T A B A S E - M E N U"
   echo "Script By"
@@ -428,7 +428,7 @@ sub_menu3() {
   ENTER_LINE=$(echo "\033[33m")
 
   clear
-  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.2"
+  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.3"
   echo "-------------------------------------------------------------------------"
   echo "ADD-ONS APPS INSTALLER - M E N U"
   echo "Script By"
@@ -531,7 +531,7 @@ sub_menu4() {
   ENTER_LINE=$(echo "\033[33m")
 
   clear
-  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.2"
+  echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.3"
   echo "-------------------------------------------------------------------------"
   echo "PHP FRAMEWORKS INSTALLER - M E N U"
   echo "Script By"
