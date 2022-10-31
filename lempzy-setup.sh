@@ -243,6 +243,7 @@ change_login_greetings() {
     echo ""
     sleep 3
 
+cd
 cat > .bashrc << EOF
 echo "########################### SERVER CONFIGURED BY LEMPZY ###########################"
 echo " ######################## FULL INSTRUCTIONS GO TO MIGUELEMMARA.ME ####################### "
@@ -258,6 +259,7 @@ echo ""
 EOF
 
     echo ""
+    cd && cd Lempzy
     sleep 1
 }
 

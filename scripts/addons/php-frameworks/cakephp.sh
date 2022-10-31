@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script author: Muhamad Miguel Emmara
-# Install Laravel
+# Install CakePHP
 
 set -e
 
@@ -35,7 +35,7 @@ while true; do
      clear
      clear
      echo "########################### SERVER CONFIGURED BY MIGUEL EMMARA ###########################"
-     echo "                                   ${grn}INSTALL LARAVEL${end}"
+     echo "                                   ${grn}INSTALL CAKEPHP${end}"
      echo ""
      echo "     __                                    "
      echo "    / /   ___  ____ ___  ____  ____  __  __"
@@ -46,8 +46,8 @@ while true; do
      echo ""
      echo "${grn}Press [CTRL + C] to cancel...${end}"
 
-     echo "Note* this will erase all of your data on your domain folder, then install Laravel!"
-     echo "Preferably install Laravel on your subdomain [eg, manage.domain.com]"
+     echo "Note* this will erase all of your data on your domain folder, then install CakePHP!"
+     echo "Preferably install CakePHP on your subdomain [eg, manage.domain.com]"
      echo "Feel free to backup any important files before hand!"
      echo ""
      echo "Here all the domain on you server"
@@ -122,8 +122,8 @@ change_vhost() {
      sed -i "s/phpX.X/php$PHP_VERSION/g" $sitesAvailable$configName
 }
 
-# Install Laravel
-install_laravel() {
+# Install Codeigniter
+install_codeigniter() {
      rm -rf /var/www/$domain/*
      cd /var/www/$domain/
 
@@ -137,21 +137,17 @@ install_laravel() {
           read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
      done
 
-     composer create-project laravel/laravel $appname2 --no-interaction
+     composer create-project --prefer-dist cakephp/app:~4.0 $appname2 --no-interaction
      cd $appname2
 
-     # Configure
-     sed -i "s/APP_URL=.*/APP_URL=https:\\/\\/$domain/g" .env
-     sed -i "s/DB_DATABASE=.*/DB_DATABASE=$DB/g" .env
-     sed -i "s/DB_USERNAME=.*/DB_USERNAME=$USR/g" .env
-     sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=$PASS/g" .env
+     # Setup Database
+     sed -i "s/'username' => 'my_app',/'username' => '$USR',/g" /var/www/$domain/$appname/config/app_local.php
+     sed -i "s/'password' => 'secret',/'password' => '$PASS',/g" /var/www/$domain/$appname/config/app_local.php
+     sed -i "s/'database' => 'my_app',/'password' => '$DB',/g" /var/www/$domain/$appname/config/app_local.php
 
-     chown -R www-data.www-data /var/www/$domain/$appname2/storage
-     chown -R www-data.www-data /var/www/$domain/$appname2/bootstrap/cache
+     chown -R www-data.www-data /var/www/$domain/$appname2/
 
-     sed -i "s/root \\/var\\/www\\/$domain;/root \\/var\\/www\\/$domain\\/$appname2\\/public;/g" /etc/nginx/sites-available/$domain
-
-     php artisan migrate:fresh
+     sed -i "s/root \\/var\\/www\\/$domain;/root \\/var\\/www\\/$domain\\/$appname2;/g" /etc/nginx/sites-available/$domain
 
 }
 
@@ -168,7 +164,7 @@ restart_service() {
 check_if_domain_exist
 create_database
 change_vhost
-install_laravel
+install_codeigniter
 restart_service
 
 # Success Prompt
@@ -183,7 +179,7 @@ echo " /_____/\___/_/ /_/ /_/ .___/ /___/\__, /"
 echo "                   /_/          /____/_/"
 echo ""
 
-echo "Complete! $domain has been installed with Laravel PHP Frameworks!"
+echo "Complete! $domain has been installed with Codeigniter PHP Frameworks!"
 echo "Navigate to ${grn}$domain${end} in your browser and start making awesome apps!"
 echo ""
 echo "Database Name: $DB"

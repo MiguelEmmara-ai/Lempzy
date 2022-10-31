@@ -533,7 +533,7 @@ sub_menu4() {
   clear
   echo "Server Name - ${grn}$(hostname)${end} - Lempzy V1.2"
   echo "-------------------------------------------------------------------------"
-  echo "ADD-ONS APPS INSTALLER - M E N U"
+  echo "PHP FRAMEWORKS INSTALLER - M E N U"
   echo "Script By"
   echo ""
   echo ""
@@ -548,9 +548,9 @@ sub_menu4() {
   echo "Choose Your Options"
   echo ""
   echo "  ${grn}1) INSTALL LARAVEL"
-  echo "  2) INSTALL SYMFONY"
-  echo "  3) INSTALL CODEIGNITER"
-  echo "  4) INSTALL CAKEPHP"
+  echo "  2) INSTALL CODEIGNITER"
+  echo "  3) INSTALL CAKEPHP"
+  echo "  4) INSTALL SYMFONY"
   echo "  5) BACK TO MAIN MENU <"
   echo "  6) EXIT MENU${end}"
   echo ""
@@ -591,14 +591,14 @@ sub_menu4() {
         ;;
 
       3)
-        # Install laravel
-        LARAVEL=/root/Lempzy/scripts/addons/php-frameworks/laravel.sh
+        # Install CakePHP
+        CAKEPHP=/root/Lempzy/scripts/addons/php-frameworks/cakephp.sh
 
-        if test -f "$LARAVEL"; then
-          source $LARAVEL
+        if test -f "$CAKEPHP"; then
+          source $CAKEPHP
           cd && cd Lempzy
         else
-          echo "${red}Cannot Install LARAVEL${end}"
+          echo "${red}Cannot Install CAKEPHP${end}"
         fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu

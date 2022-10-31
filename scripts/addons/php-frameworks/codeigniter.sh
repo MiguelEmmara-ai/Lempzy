@@ -143,12 +143,12 @@ install_codeigniter() {
      # Configure
      cp env .env
      sed -i "s/# CI_ENVIRONMENT = production/CI_ENVIRONMENT = development/g" .env
-     sed -i "s/public $baseURL = 'http:\\/\\/localhost:8080\\/';/public $baseURL = 'http:\\/\\/$domain\\/';/g" /var/www/$domain/$appname/app/Config/App.php
+     sed -i "s/public $baseURL = 'http:\\/\\/localhost:8080\\/';/public $baseURL = 'http:\\/\\/$domain\\/';/g" /var/www/$domain/$appname2/app/Config/App.php
 
      # Setup Database
-     sed -i "s/'"'"'username'"'"' => '"'"''"'"',/'"'"'username'"'"' => '"'"'$USR'"'"',"/g /var/www/$domain/$appname/app/Config/Database.php
-     sed -i "s/'"'"'password'"'"' => '"'"''"'"',/'"'"'password'"'"' => '"'"'$PASS'"'"',"/g /var/www/$domain/$appname/app/Config/Database.php
-     sed -i "s/'"'"'database'"'"' => '"'"''"'"',/'"'"'database'"'"' => '"'"'$DB'"'"',"/g /var/www/$domain/$appname/app/Config/Database.php
+     sed -i "s/'username' => '',/'username' => '$USR',"/g /var/www/$domain/$appname2/app/Config/Database.php
+     sed -i "s/'password' => '',/'password' => '$PASS',"/g /var/www/$domain/$appname2/app/Config/Database.php
+     sed -i "s/'database' => '',/'database' => '$DB',"/g /var/www/$domain/$appname2/app/Config/Database.php
 
      chown -R www-data.www-data /var/www/$domain/$appname2/writable
 
