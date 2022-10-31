@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script author: Muhamad Miguel Emmara
-# Install CakePHP
+# Install Symfony
 
 set -e
 
@@ -35,7 +35,7 @@ while true; do
      clear
      clear
      echo "########################### SERVER CONFIGURED BY MIGUEL EMMARA ###########################"
-     echo "                                   ${grn}INSTALL CAKEPHP${end}"
+     echo "                                   ${grn}INSTALL SYMFONY${end}"
      echo ""
      echo "     __                                    "
      echo "    / /   ___  ____ ___  ____  ____  __  __"
@@ -46,8 +46,8 @@ while true; do
      echo ""
      echo "${grn}Press [CTRL + C] to cancel...${end}"
 
-     echo "Note* this will erase all of your data on your domain folder, then install CakePHP!"
-     echo "Preferably install CakePHP on your subdomain [eg, manage.domain.com]"
+     echo "Note* this will erase all of your data on your domain folder, then install Symfony!"
+     echo "Preferably install Symfony on your subdomain [eg, manage.domain.com]"
      echo "Feel free to backup any important files before hand!"
      echo ""
      echo "Here all the domain on you server"
@@ -122,8 +122,8 @@ change_vhost() {
      sed -i "s/phpX.X/php$PHP_VERSION/g" $sitesAvailable$configName
 }
 
-# Install CakePHP
-install_cakephp() {
+# Install Symfony
+install_symfony() {
      rm -rf /var/www/$domain/*
      cd /var/www/$domain/
 
@@ -137,17 +137,12 @@ install_cakephp() {
           read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
      done
 
-     composer create-project --prefer-dist cakephp/app:~4.0 $appname2 --no-interaction
-     cd $appname2
-
-     # Setup Database
-     sed -i "s/'username' => 'my_app',/'username' => '$USR',/g" /var/www/$domain/$appname/config/app_local.php
-     sed -i "s/'password' => 'secret',/'password' => '$PASS',/g" /var/www/$domain/$appname/config/app_local.php
-     sed -i "s/'database' => 'my_app',/'password' => '$DB',/g" /var/www/$domain/$appname/config/app_local.php
+     composer create-project symfony/website-skeleton $appname2 --no-interaction
 
      chown -R www-data.www-data /var/www/$domain/$appname2/
 
-     sed -i "s/root \\/var\\/www\\/$domain;/root \\/var\\/www\\/$domain\\/$appname2;/g" /etc/nginx/sites-available/$domain
+     sed -i "s/root \\/var\\/www\\/$domain;/root \\/var\\/www\\/$domain\\/$appname2\\/public;/g" /etc/nginx/sites-available/$domain
+
 
 }
 
@@ -164,7 +159,7 @@ restart_service() {
 check_if_domain_exist
 create_database
 change_vhost
-install_cakephp
+install_symfony
 restart_service
 
 # Success Prompt

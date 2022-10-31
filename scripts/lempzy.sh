@@ -605,14 +605,14 @@ sub_menu4() {
         ;;
 
       4)
-        # Install laravel
-        LARAVEL=/root/Lempzy/scripts/addons/php-frameworks/laravel.sh
+        # Install Symfony
+        SYMFONY=/root/Lempzy/scripts/addons/php-frameworks/symfony.sh
 
-        if test -f "$LARAVEL"; then
-          source $LARAVEL
+        if test -f "$SYMFONY"; then
+          source $SYMFONY
           cd && cd Lempzy
         else
-          echo "${red}Cannot Install LARAVEL${end}"
+          echo "${red}Cannot Install SYMFONY${end}"
         fi
         read -p "${grn}Press [Enter] key to continue...${end}" readEnterKey
         main_menu
