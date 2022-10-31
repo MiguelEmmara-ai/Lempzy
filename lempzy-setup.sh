@@ -19,6 +19,9 @@
 # AB BENCHMARKING TOOL
 # ZIP AND UNZIP
 # FFMPEG AND IMAGEMAGICK
+# CURL
+# GIT
+# COMPOSER
 #--------------------------------------------------
 
 set -e
@@ -212,12 +215,35 @@ else
      exit
 fi
 
+# Install Git And Curl
+INSTALL_GIT=scripts/install/install_git.sh
+
+if test -f "$INSTALL_GIT"; then
+     source $INSTALL_GIT
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install Git And Curl${end}"
+     exit
+fi
+
+# Install Composer
+INSTALL_COMPOSER=scripts/install/install_composer.sh
+
+if test -f "$INSTALL_COMPOSER"; then
+     source $INSTALL_COMPOSER
+     cd && cd Lempzy
+else
+     echo "${red}Cannot Install Composer${end}"
+     exit
+fi
+
 # Change Login Greeting
 change_login_greetings() {
     echo "${grn}Change Login Greeting ...${end}"
     echo ""
     sleep 3
 
+cd
 cat > .bashrc << EOF
 echo "########################### SERVER CONFIGURED BY LEMPZY ###########################"
 echo " ######################## FULL INSTRUCTIONS GO TO MIGUELEMMARA.ME ####################### "
@@ -233,6 +259,7 @@ echo ""
 EOF
 
     echo ""
+    cd && cd Lempzy
     sleep 1
 }
 
